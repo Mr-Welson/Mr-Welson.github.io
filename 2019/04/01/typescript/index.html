@@ -1,0 +1,1676 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.jpg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="typescript,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介TypeScript 是 JavaScript 的一个超集，主要提供了 类型系统 和对 ES6 的支持，由 Microsoft 开发。">
+<meta name="keywords" content="typescript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript">
+<meta property="og:url" content="https://mr-welson.github.io/2019/04/01/typescript/index.html">
+<meta property="og:site_name" content="Mr.Welson">
+<meta property="og:description" content="简介TypeScript 是 JavaScript 的一个超集，主要提供了 类型系统 和对 ES6 的支持，由 Microsoft 开发。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-01T07:16:59.809Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TypeScript">
+<meta name="twitter:description" content="简介TypeScript 是 JavaScript 的一个超集，主要提供了 类型系统 和对 ES6 的支持，由 Microsoft 开发。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mr-welson.github.io/2019/04/01/typescript/">
+
+
+
+
+
+  <title>TypeScript | Mr.Welson</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr.Welson</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">never stop learning</h1>
+      
+  </div>
+
+  
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mr-welson.github.io/2019/04/01/typescript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Welson">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.Welson">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">TypeScript</h2>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              
+              
+                <span class="post-meta-item-text">posted @ </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-01T15:11:22+08:00">
+                2019-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+          
+            <span class="post-category">
+              
+                <span class="post-meta-divider"> </span>
+              
+            
+              
+                <span class="post-meta-item-text">分类： </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+            <span class="post-wordcount">
+              
+              
+                
+                  <span class="post-meta-divider"> </span>
+                
+                
+                <span title="字数">
+                 字数(7.1k)
+                </span>
+              
+
+              
+
+              
+              
+            </span>
+          
+
+          
+          
+            <span id="/2019/04/01/typescript/" class="leancloud_visitors" data-flag-title="TypeScript">
+              <span class="post-meta-divider"> </span>
+              
+              <span class="page-pv">
+                阅读(
+                <span class="leancloud-visitors-count"></span>
+                )
+              </span>
+              
+             </span>
+          
+
+          
+
+          
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider"> </span>
+                
+                <a href="/2019/04/01/typescript/#comments" itemprop="discussionUrl">
+                  评论(
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/01/typescript/" itemprop="commentCount"></span>
+                  )
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="http://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a> 是 JavaScript 的一个超集，主要提供了 类型系统 和对 ES6 的支持，由 Microsoft 开发。 </p>
+<a id="more"></a>
+<p>应用：vue3.0，angular2.0，vscode…</p>
+<ol>
+<li>编译型语言：编译为 js 后运行，单独无法运行;</li>
+<li>强类型语言;</li>
+<li>面向对象的语言;</li>
+</ol>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ol>
+<li>类型系统实际上是最好的文档，大部分的函数看看类型的定义就可以知道如何使用；</li>
+<li>可以在编译阶段就发现大部分错误，这总比在运行时候出错好；</li>
+<li>增强了编辑器和 IDE 的功能，包括代码补全、接口提示、跳转到定义、重构等；</li>
+</ol>
+<p>总结：TypeSctipt增加了代码的可读性和可维护性。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>需要有node环境，通过npm安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g typescript</span><br></pre></td></tr></table></figure>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p><a href="https://www.tslang.cn/play/index.html" target="_blank" rel="noopener">在线编译预览 TS </a></p>
+<p>使用 <code>.ts</code> 文件扩展名， 使用 <code>typescript</code> 编写使用 React 时，使用 <code>.tsx</code> 扩展名。</p>
+<p>使用 <code>:</code> 指定变量的类型，<code>:</code> 的前后有没有空格都可以;</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function sayHello(person: string) &#123;</span><br><span class="line">    return &apos;Hello, &apos; + person;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let user = &apos;Tom&apos;;</span><br><span class="line">console.log(sayHello(user));</span><br></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>使用<code>tsc</code>  命令可编译 .ts 文件， 生成一个同名 .js 文件；编译的时候即使报错了，还是会生成编译结果(.js)，可通过 <a href="https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/tsconfig.json.html" target="_blank" rel="noopener">tsconfig.json</a> 文件配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tsc demo.ts</span><br></pre></td></tr></table></figure>
+<h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h2><h3 id="布尔值-boolean"><a href="#布尔值-boolean" class="headerlink" title="布尔值 boolean"></a>布尔值 boolean</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> isDone: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+<p>注意，使用构造函数 Boolean 创造的对象不是布尔值</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> newBool: <span class="built_in">boolean</span> = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>);</span><br><span class="line"><span class="comment">// 编译报错: 不能将类型“Boolean”分配给类型“boolean”。“boolean”是基元，但“Boolean”是包装器对象。如可能首选使用“boolean”。ts(2322)</span></span><br></pre></td></tr></table></figure>
+<h3 id="数字-number"><a href="#数字-number" class="headerlink" title="数字 number"></a>数字 number</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="built_in">number</span>: <span class="built_in">number</span> = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">let</span> notANumber: <span class="built_in">number</span> = <span class="literal">NaN</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="字符串-string"><a href="#字符串-string" class="headerlink" title="字符串 string"></a>字符串 string</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span>  <span class="built_in">string</span>: <span class="built_in">string</span> = <span class="string">'Tom'</span>;</span><br><span class="line"><span class="keyword">let</span> sentence: <span class="built_in">string</span> = <span class="string">`my name is <span class="subst">$&#123;aString&#125;</span>`</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="空值-void"><a href="#空值-void" class="headerlink" title="空值 void"></a>空值 void</h3><p>void 类型的变量只能赋值为 undefined 和 null</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let unusable: void = undefined;</span><br></pre></td></tr></table></figure>
+<p>可以用 void 表示没有任何返回值的函数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function alertName(): void &#123;</span><br><span class="line">  alert(&apos;My name is Tom&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="null-和-undefined"><a href="#null-和-undefined" class="headerlink" title="null 和 undefined"></a>null 和 undefined</h3><p>undefined 类型的变量只能被赋值为 undefined，null 类型的变量只能被赋值为 null</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let u: undefined = undefined;</span><br><span class="line">let n: null = null;</span><br></pre></td></tr></table></figure>
+<p>与 void 的区别是，undefined 和 null 是所有类型的子类型。也就是说 undefined 类型的变量，可以赋值给 number 类型的变量：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let u: undefined;</span><br><span class="line">let num: number = u;</span><br><span class="line">let num2:number = undefined;</span><br><span class="line">// 编译合法 undefined是number的子类型</span><br><span class="line"></span><br><span class="line">let unm2: void;</span><br><span class="line">let num3: number = unm2;</span><br><span class="line">// =&gt; 不合法 (void不是number的子类型)</span><br></pre></td></tr></table></figure>
+<h3 id="任意值-any"><a href="#任意值-any" class="headerlink" title="任意值 any"></a>任意值 any</h3><p>any 用来表示允许赋值为任意类型</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let anyType:any = &apos;seven&apos;;</span><br><span class="line">anyType = 7;</span><br></pre></td></tr></table></figure>
+<p>在任意值上访问任何属性和方法都是允许的，即不做类型检查</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let anyType:any = &apos;seven&apos;;</span><br><span class="line">console.log(anyType.name().age) </span><br><span class="line">// =&gt; 允许编译，但是js执行会报错</span><br></pre></td></tr></table></figure>
+<p>变量如果在声明的时候，未指定其类型， 也没有赋值， 那么它会被推断(类型推论)为任意值类型而完全不被类型检查</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let something; </span><br><span class="line">// 等价于 let something: any;</span><br><span class="line">something = &apos;seven&apos;;</span><br><span class="line">something = 7;</span><br></pre></td></tr></table></figure>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>可理解为相同类型的一组数据，数组类型有多种定义方式</p>
+<p>1，类型 + 方括号（  type [ ] ）</p>
+<p>这种方式定义的数组项中不允许出现其他的类型</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let list: number[] = [1, 2, 3];</span><br></pre></td></tr></table></figure>
+<p>2，数组泛型  Array &lt; type &gt;</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let list: Array&lt;number&gt; = [1, 2, 3];</span><br></pre></td></tr></table></figure>
+<h3 id="元祖-Tuple"><a href="#元祖-Tuple" class="headerlink" title="元祖 Tuple"></a>元祖 Tuple</h3><p>元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同，简单理解为可定义一组不同类型的数据：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let arr:[string, number] = [&apos;name&apos;, 20];</span><br><span class="line">console.log(arr[0]); </span><br><span class="line">// =&gt; &apos;name&apos;</span><br></pre></td></tr></table></figure>
+<p>越界元素：当访问超出元祖长度的元素时，它的类型会被限制为元祖中每个类型的联合类型</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let arr:[string, number] = [&apos;name&apos;, 20];</span><br><span class="line">arr[0] = &apos;age&apos;;</span><br><span class="line">arr[2] = &apos;string&apos;;</span><br><span class="line">arr[3] = 40;</span><br><span class="line">arr[4] = true; // 编译报错</span><br></pre></td></tr></table></figure>
+<h3 id="枚举-enum"><a href="#枚举-enum" class="headerlink" title="枚举 enum"></a>枚举 enum</h3><p>[‘enəm] </p>
+<p>枚举类型用于取值被限定在一定范围内的场景，如一周只有7天，一年只有4季等。</p>
+<h4 id="枚举初始化"><a href="#枚举初始化" class="headerlink" title="枚举初始化"></a>枚举初始化</h4><p>枚举初始化可以理解为给枚举成员赋值。每个枚举成员都需要带有一个值，在未赋值的情况下， 枚举成员会被赋值为从 <code>0</code> 开始， 步长为 1 递增的数字：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enum Weeks &#123;Mon, Tue, Wed, Thu, Fri, Sat, Sun&#125;;</span><br><span class="line"></span><br><span class="line">console.log(Weeks[&apos;Mon&apos;]); // =&gt; 0</span><br><span class="line">console.log(Weeks[0]); // =&gt; &apos;Mon&apos;</span><br><span class="line">console.log(Weeks.Tue); // =&gt; 1</span><br></pre></td></tr></table></figure>
+<p>手动赋值时， 未赋值的枚举成员会接着上一个枚举项递增（初始化）：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> Weeks &#123;</span><br><span class="line">	Mon, Tue, Wed, Thu = <span class="number">2</span>, Fri, Sat = <span class="number">-1.5</span>, Sun</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Weeks[<span class="string">'Mon'</span>]); <span class="comment">// =&gt; 0</span></span><br><span class="line"><span class="built_in">console</span>.log(Weeks.Wed); <span class="comment">// =&gt; 2</span></span><br><span class="line"><span class="built_in">console</span>.log(Weeks.Thu); <span class="comment">// =&gt; 2</span></span><br><span class="line"><span class="built_in">console</span>.log(Weeks.Fri); <span class="comment">// =&gt; 3</span></span><br><span class="line"><span class="built_in">console</span>.log(Weeks.Sun); <span class="comment">// =&gt; -0.5</span></span><br></pre></td></tr></table></figure>
+<p>上例中，未手动赋值的 Wed 和手动赋值的 Thu 取值重复了，但是 TypeScript 并不会报错，该种情况可能会引起取值错误，所以使用的时候最好避免出现取值重复的情况。</p>
+<p>TypeScript 支持 数字 的和基于字符串的枚举。</p>
+<h4 id="数字枚举"><a href="#数字枚举" class="headerlink" title="数字枚举"></a>数字枚举</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enum Weeks &#123;</span><br><span class="line">	Sun, Mon, Tue, Wed, Thu, Fri, Sat</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enum Direction &#123;</span><br><span class="line">    Up = &quot;UP&quot;,</span><br><span class="line">    Down = &quot;DOWN&quot;,</span><br><span class="line">    Left = &quot;LEFT&quot;,</span><br><span class="line">    Right = &quot;RIGHT&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="异构枚举（Heterogeneous-enums）"><a href="#异构枚举（Heterogeneous-enums）" class="headerlink" title="异构枚举（Heterogeneous enums）"></a>异构枚举（Heterogeneous enums）</h4><p>可以混合字符串和数字，但通常不这么做</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enum Gender &#123;</span><br><span class="line">    Male = 0,</span><br><span class="line">    Female = &quot;1&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="常量成员和计算所得成员"><a href="#常量成员和计算所得成员" class="headerlink" title="常量成员和计算所得成员"></a>常量成员和计算所得成员</h4><p>枚举成员的值可以是 常量 或 计算出来的。</p>
+<p>上面所举的例子都是常量成员，官网定义如下：</p>
+<p>当满足以下条件时，枚举成员被当作是常数：</p>
+<ul>
+<li>不具有初始化函数并且之前的枚举成员是常数。在这种情况下，当前枚举成员的值为上一个枚举成员的值加 <code>1</code>。但第一个枚举元素是个例外。如果它没有初始化方法，那么它的初始值为 <code>0</code>。</li>
+<li>枚举成员使用常数枚举表达式初始化。常数枚举表达式是 TypeScript 表达式的子集，它可以在编译阶段求值。当一个表达式满足下面条件之一时，它就是一个常数枚举表达式：<ul>
+<li>数字字面量</li>
+<li>引用之前定义的常数枚举成员（可以是在不同的枚举类型中定义的）如果这个成员是在同一个枚举类型中定义的，可以使用非限定名来引用</li>
+<li>带括号的常数枚举表达式</li>
+<li><code>+</code>, <code>-</code>, <code>~</code> 一元运算符应用于常数枚举表达式</li>
+<li><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code>, <code>&gt;&gt;&gt;</code>, <code>&amp;</code>, <code>|</code>, <code>^</code> 二元运算符，常数枚举表达式做为其一个操作对象。若常数枚举表达式求值后为 NaN 或 Infinity，则会在编译阶段报错</li>
+</ul>
+</li>
+</ul>
+<p>所有其它情况的枚举成员被当作是需要计算得出的值。</p>
+<h4 id="常量枚举-const-enum"><a href="#常量枚举-const-enum" class="headerlink" title="常量枚举 const enum"></a>常量枚举 const enum</h4><p>常数枚举与普通枚举的区别是，它会在编译阶段被删除，并且不能包含计算成员。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const enum Directions &#123;</span><br><span class="line">    Up,</span><br><span class="line">    Down,</span><br><span class="line">    Left,</span><br><span class="line">    Right</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];</span><br></pre></td></tr></table></figure>
+<p>编译后：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var directions = [0 /* Up */, 1 /* Down */, 2 /* Left */, 3 /* Right */];</span><br></pre></td></tr></table></figure>
+<h4 id="外部枚举-declare-enum"><a href="#外部枚举-declare-enum" class="headerlink" title="外部枚举 declare enum"></a>外部枚举 declare enum</h4><p>外部枚举与声明语句一样，常出现在声明文件中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">declare enum Directions &#123;</span><br><span class="line">    Up,</span><br><span class="line">    Down,</span><br><span class="line">    Left,</span><br><span class="line">    Right</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];</span><br></pre></td></tr></table></figure>
+<p>编译后：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];</span><br></pre></td></tr></table></figure>
+<p>同时使用 <code>declare</code> 和 <code>const</code> 也是可以的，编译结果同常量枚举一致。</p>
+<h3 id="never"><a href="#never" class="headerlink" title="never"></a>never</h3><p>永远不存在值的类型，一般用于错误处理函数。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 返回never的函数必须存在无法达到的终点</span><br><span class="line">function error(message: string): never &#123;</span><br><span class="line">    throw new Error(message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h3><p>自ECMAScript 2015起，<code>symbol</code>成为了一种新的原生类型，就像 <code>number</code> 和 <code>string</code> 一样。</p>
+<p><code>symbol</code>类型的值是通过<code>Symbol</code>构造函数创建的。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let sym1 = Symbol();</span><br></pre></td></tr></table></figure>
+<p>Symbols是不可改变且唯一的。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let sym2 = Symbol(&quot;key&quot;);</span><br><span class="line">let sym3 = Symbol(&quot;key&quot;);</span><br><span class="line">sym2 === sym3; // false, symbols是唯一的</span><br></pre></td></tr></table></figure>
+<p>更多用法参看 <a href="http://es6.ruanyifeng.com/#docs/symbol" target="_blank" rel="noopener">阮一峰ES6的symbol</a></p>
+<h3 id="object"><a href="#object" class="headerlink" title="object"></a>object</h3><p><code>object</code>表示非原始类型，也就是除<code>number</code>，<code>string</code>，<code>boolean</code>，<code>symbol</code>，<code>null</code>或<code>undefined</code>之外的类型。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function create(o: object | null): void;</span><br><span class="line"></span><br><span class="line">create(&#123; prop: 0 &#125;); // OK</span><br><span class="line">create(null); // OK</span><br><span class="line"></span><br><span class="line">create(42); // Error</span><br><span class="line">create(&quot;string&quot;); // Error</span><br><span class="line">create(false); // Error</span><br><span class="line">create(undefined); // Error</span><br></pre></td></tr></table></figure>
+<h3 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h3><p>JavaScript 中有很多<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects" target="_blank" rel="noopener">内置对象</a>，它们可以直接在 TypeScript 中当做定义好了的类型。</p>
+<h4 id="ECMAScript-的内置对象"><a href="#ECMAScript-的内置对象" class="headerlink" title="ECMAScript 的内置对象"></a>ECMAScript 的内置对象</h4><p><code>Boolean</code>、<code>Error</code>、<code>Date</code>、<code>RegExp</code> 等。更多的内置对象，可以查看 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects" target="_blank" rel="noopener">MDN 的文档</a>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let b: Boolean = new Boolean(1);</span><br><span class="line">let e: Error = new Error(&apos;Error occurred&apos;);</span><br><span class="line">let d: Date = new Date();</span><br><span class="line">let r: RegExp = /[a-z]/;</span><br></pre></td></tr></table></figure>
+<h4 id="DOM-和-BOM-的内置对象"><a href="#DOM-和-BOM-的内置对象" class="headerlink" title="DOM 和 BOM 的内置对象"></a>DOM 和 BOM 的内置对象</h4><p><code>Document</code>、<code>HTMLElement</code>、<code>Event</code>、<code>NodeList</code> 等。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let body: HTMLElement = document.body;</span><br><span class="line">let allDiv: NodeList = document.querySelectorAll(&apos;div&apos;);</span><br><span class="line">document.addEventListener(&apos;click&apos;, function(e: MouseEvent) &#123;</span><br><span class="line">  // Do something</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="类型推论"><a href="#类型推论" class="headerlink" title="类型推论"></a>类型推论</h2><p>变量申明如果没有明确的指定类型，那么 TypeScript 会依照类型推论的规则推断出一个类型</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let string = &apos;seven&apos;;</span><br><span class="line">// 等价于 let string: string = &apos;seven&apos;;</span><br><span class="line">string = 4;</span><br><span class="line">// 编译报错: error TS2322: Type &apos;number&apos; is not assignable to type &apos;string&apos;</span><br></pre></td></tr></table></figure>
+<p>变量声明但是未赋值，会推论为 any</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let x;</span><br><span class="line">x = 1;</span><br><span class="line">x = &apos;aaa&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h2><p>表示取值可以为多种类型中的一种，使用 | 分隔每个类型</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let stringOrNumber:string | number;</span><br><span class="line">stringOrNumber = &apos;seven&apos;;</span><br></pre></td></tr></table></figure>
+<p>当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候, 我们只能访问此联合类型的所有类型里共有的属性或方法</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getString</span>(<span class="params">something: <span class="built_in">string</span> | <span class="built_in">number</span></span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">  <span class="comment">// toString 是 string类型 和 number类型 的共有属性</span></span><br><span class="line">  <span class="keyword">return</span> something.toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLength</span>(<span class="params">something: <span class="built_in">string</span> | <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> something.length;</span><br><span class="line">  <span class="comment">// =&gt; 编译报错: length 不是 string类型 和 number类型 的共有属性, 所以报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h2><p>类型断言（Type Assertion）可以用来手动指定一个值的类型。</p>
+<p>类型断言有2种形式：</p>
+<p>1，&lt;类型&gt;值   ( 尖括号语法 )</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let someValue: any = &quot;this is a string&quot;;</span><br><span class="line"></span><br><span class="line">let strLength: number = (&lt;string&gt;someValue).length;</span><br></pre></td></tr></table></figure>
+<p>2，值 as 类型  ( as 语法 )</p>
+<p>当使用 <code>tsx</code>  时，只有 <code>as</code>语法断言是被允许的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let someValue: any = &quot;this is a string&quot;;</span><br><span class="line"></span><br><span class="line">let strLength: number = (someValue as string).length;</span><br></pre></td></tr></table></figure>
+<p>在上述 联合类型 的例子中， <code>getLength</code> 方法会编译报错，此时我们可以使用类型断言，将 <code>something</code> 断言成 <code>string</code> 就不会报错了：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLength</span>(<span class="params">something: <span class="built_in">string</span> | <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((&lt;<span class="built_in">string</span>&gt;something).length) &#123;</span><br><span class="line">    	<span class="comment">// 将 something 断言为 string类型</span></span><br><span class="line">        <span class="keyword">return</span> (&lt;<span class="built_in">string</span>&gt;something).length;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> something.toString().length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意 :</strong> 类型断言不是类型转换，断言成一个联合类型中不存在的类型是不允许的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function toBoolean(something: string | number): boolean &#123;</span><br><span class="line">    return &lt;boolean&gt;something;</span><br><span class="line">    // =&gt; 报错</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类型别名-type"><a href="#类型别名-type" class="headerlink" title="类型别名 type"></a>类型别名 type</h2><p>类型别名用来给一个类型起个新名字，多用于联合类型：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type Name = string;</span><br><span class="line">type GetName = () =&gt; string;</span><br><span class="line">type NameOrGetter = Name | GetName;</span><br><span class="line">function getName(n: NameOrGetter): Name &#123;</span><br><span class="line">    if (typeof n === &apos;string&apos;) &#123;</span><br><span class="line">        return n;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return n();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串字面量类型"><a href="#字符串字面量类型" class="headerlink" title="字符串字面量类型"></a>字符串字面量类型</h2><p>字符串字面量类型用来约束取值只能是某几个字符串中的一个。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type EventNames = &apos;click&apos; | &apos;scroll&apos; | &apos;mousemove&apos;;</span><br><span class="line">function handleEvent(ele: Element, event: EventNames) &#123;</span><br><span class="line">    // do something</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handleEvent(document.getElementById(&apos;hello&apos;), &apos;scroll&apos;);  // 没问题</span><br><span class="line">handleEvent(document.getElementById(&apos;world&apos;), &apos;dbclick&apos;); // 报错，event 不能为 &apos;dbclick&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="接口-Interfaces"><a href="#接口-Interfaces" class="headerlink" title="接口 Interfaces"></a>接口 Interfaces</h2><p>接口（Interfaces）是一个很重要的概念，可以理解为一种规范或者约束，用来描述 <strong>对象(object) 的形状</strong> 或者对 <strong>类(class) 的行为</strong> 进行抽象。对类的行为抽象将在后面 <strong>类与接口</strong> 一章中介绍，下面主要介绍对对象的形状进行描述。</p>
+<h3 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h3><p>使用 interface 定义接口, 接口名称一般首字母大写，定义接口的时候，只定义声明即可，不包含具体内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 定义一个接口 Person</span><br><span class="line">interface Person &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 定义一个个变量，它的类型是 Person</span><br><span class="line">let tom: Person = &#123;</span><br><span class="line">  name: &apos;Tom&apos;,</span><br><span class="line">  age: 25</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>实现接口的时候，要实现里面的内容，定义的变量比接口少了或多了属性都是不允许的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let tom: Person = &#123;</span><br><span class="line">  name: &apos;tom&apos;</span><br><span class="line">&#125;</span><br><span class="line">// =&gt; 编译报错，少了age属性</span><br></pre></td></tr></table></figure>
+<h3 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h3><p>使用 ? 代表可选属性, 即该属性可以不存在, 但不允许添加未定义的属性</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface Person &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age?: number;</span><br><span class="line">&#125;</span><br><span class="line">let tom: Person = &#123;</span><br><span class="line">  name: &apos;tom&apos;</span><br><span class="line">&#125;</span><br><span class="line">// age是可选属性</span><br></pre></td></tr></table></figure>
+<h3 id="任意属性"><a href="#任意属性" class="headerlink" title="任意属性"></a>任意属性</h3><p>定义了任意属性后可以添加未定义的属性，并可以指定属性值的类型</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface Person03 &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age?: number;</span><br><span class="line">  [propName: string]: any;</span><br><span class="line">&#125;</span><br><span class="line">let tom04: Person03 = &#123;</span><br><span class="line">  name: &apos;Tom&apos;,</span><br><span class="line">  age: 25,</span><br><span class="line">  gender: &apos;male&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>定义了任意属性，那么确定属性和可选属性都必须是它的子属性</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface Person &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age?: number;</span><br><span class="line">  [propName: string]: string;</span><br><span class="line">&#125;</span><br><span class="line">// 编译报错：Person定义了一个任意属性，其值为string类型。则Person的所有属性都必须为string类型，而age为number类型</span><br></pre></td></tr></table></figure>
+<h3 id="只读属性-readonly"><a href="#只读属性-readonly" class="headerlink" title="只读属性 readonly"></a>只读属性 readonly</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  readonly id: <span class="built_in">number</span>;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  age?: <span class="built_in">number</span>;</span><br><span class="line">  [propName: <span class="built_in">string</span>]: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只读的约束存在于第一次给对象赋值的时候，而不是第一次给只读属性赋值的时候</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> person: Person = &#123;</span><br><span class="line">  id: <span class="number">100</span>,</span><br><span class="line">  name: <span class="string">'tom'</span>,</span><br><span class="line">&#125;</span><br><span class="line">person05.id = <span class="number">90</span>;</span><br><span class="line"><span class="comment">// =&gt; 编译报错：id为只读, 不可修改</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person2: Person = &#123;</span><br><span class="line">  name: <span class="string">'welson'</span>,</span><br><span class="line">  age: <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// =&gt; 编译报错：给对象 person2 赋值，未定义只读属性id</span></span><br><span class="line">person2.id = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// =&gt; 编译报错：id为只读, 不可修改</span></span><br></pre></td></tr></table></figure>
+<h3 id="函数类型接口"><a href="#函数类型接口" class="headerlink" title="函数类型接口"></a>函数类型接口</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 只有参数列表和返回值类型的函数定义, 参数列表里的每个参数都需要名字和类型</span><br><span class="line">interface SearchFunc &#123;</span><br><span class="line">  (source: string, subString: string): boolean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function sum(x: number, y: number): number &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输入多余的（或者少于要求的）参数，是不被允许的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sum(1, 2, 3);</span><br><span class="line">// 编译报错：多了1个参数</span><br></pre></td></tr></table></figure>
+<h3 id="匿名函数（函数表达式）"><a href="#匿名函数（函数表达式）" class="headerlink" title="匿名函数（函数表达式）"></a>匿名函数（函数表达式）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let mySum = function (x: number, y: number): number &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面的代码只对等号右侧的匿名函数进行了类型定义，而等号左边的 <code>mySum</code>，是通过赋值操作进行类型推论而推断出来的。如果需要我们手动给 <code>mySum</code> 添加类型，则应该是这样：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let mySum: (x: number, y: number) =&gt; number = function (x: number, y: number): number &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">&#125;;</span><br><span class="line">// 注意不要混淆了 TypeScript 中的 =&gt; 和 ES6 中的 =&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="用接口定义函数的形状"><a href="#用接口定义函数的形状" class="headerlink" title="用接口定义函数的形状"></a>用接口定义函数的形状</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface FuncAdd &#123;</span><br><span class="line">  (value: number, increment: number): number</span><br><span class="line">&#125;</span><br><span class="line">let add: FuncAdd;</span><br><span class="line">add = function(value: number, increment: number): number &#123;</span><br><span class="line">  return value + increment;</span><br><span class="line">&#125;</span><br><span class="line">// 函数的参数名不需要与接口里定义的名字相匹配</span><br><span class="line">let add2: FuncAdd;</span><br><span class="line">add2 = function(a: number, b: number) &#123;</span><br><span class="line">  return a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h3><p>可选参数必须接在必需参数后面，换句话说，可选参数后面不允许再出现必须参数了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function addNum(a: number, b: number, c? :number): number &#123;</span><br><span class="line">	if(c) &#123;</span><br><span class="line">      	return a + b + c;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">      	return a + b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(add(1, 2));</span><br></pre></td></tr></table></figure>
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>类比 ES6 中的默认值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function add(a: number = 1, b: number): number &#123;</span><br><span class="line">  	return a + b;</span><br><span class="line">&#125;</span><br><span class="line">console.log(add(undefined, 1));</span><br></pre></td></tr></table></figure>
+<h3 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h3><p>类比 Es6 中对象展开</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface AddFunc &#123;</span><br><span class="line">  (num1: number, ...rest: number[]): number</span><br><span class="line">&#125;</span><br><span class="line">let add: AddFunc;</span><br><span class="line">add = function(a: number, ...rest: number[]): number &#123;</span><br><span class="line">	let result = a; </span><br><span class="line">	rest.map(v =&gt; result += v);</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br><span class="line">console.log(add(1,2,3,4));</span><br></pre></td></tr></table></figure>
+<h3 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h3><p>重载是为同一个函数提供多个函数类型定义，允许函数对传入不同的参数返回不同的的结果分别做类型检查</p>
+<p>比如实现一个数字或字符串的反转函数：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>(<span class="params">text: <span class="built_in">number</span> | <span class="built_in">string</span></span>): <span class="title">number</span> | <span class="title">string</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> text === <span class="string">'string'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> text.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">typeof</span> text === <span class="string">'number'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> +text.toString().split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述函数利用联合类型实现，但有一个缺点，无法精确检查输入和输出类型，即输入数字输出也应该为数字，这时就可以使用重载定义多个函数类型:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function reverse(text: number): number;</span><br><span class="line">function reverse(text: string): string;</span><br><span class="line">function reverse(text: number | string): number | string &#123;</span><br><span class="line">  if(typeof text === &apos;string&apos;) &#123;</span><br><span class="line">    return text.split(&apos;&apos;).reverse().join(&apos;&apos;);</span><br><span class="line">  &#125; else if(typeof text === &apos;number&apos;) &#123;</span><br><span class="line">    return +text.toString().split(&apos;&apos;).reverse().join(&apos;&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重复定义多次函数 <code>reverse</code>，前几次都是函数定义，最后一次是函数实现。</p>
+<p>TypeScript与JavaScript的处理流程相似，它会查找重载列表，从第一个重载定义开始匹配，如果匹配的话就使用这个定义，所以多个函数定义如果有包含关系，需要优先把精确的定义写在前面。</p>
+<h2 id="类-class"><a href="#类-class" class="headerlink" title="类 class"></a>类 class</h2><p>同ES6 的 class</p>
+<h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><ul>
+<li>类(Class)：定义了一件事物的抽象特点，包含它的属性和方法</li>
+<li>对象（Object）：类的实例，通过 <code>new</code> 生成</li>
+<li>面向对象（OOP）的三大特性：封装、继承、多态</li>
+<li>封装（Encapsulation）：将对数据的操作细节隐藏起来，只暴露对外的接口。外界调用端不需要（也不可能）知道细节，就能通过对外提供的接口来访问该对象，同时也保证了外界无法任意更改对象内部的数据</li>
+<li>继承（Inheritance）：子类继承父类，子类除了拥有父类的所有特性外，还有一些更具体的特性</li>
+<li>多态（Polymorphism）：由继承而产生了相关的不同的类，对同一个方法可以有不同的响应。比如 <code>Cat</code> 和 <code>Dog</code> 都继承自 <code>Animal</code>，但是分别实现了自己的 <code>eat</code> 方法。此时针对某一个实例，我们无需了解它是 <code>Cat</code> 还是 <code>Dog</code>，就可以直接调用 <code>eat</code> 方法，程序会自动判断出来应该如何执行 <code>eat</code></li>
+<li>存取器（getter &amp; setter）：用以改变属性的读取和赋值行为</li>
+<li>修饰符（Modifiers）：修饰符是一些关键字，用于限定成员或类型的性质。比如 <code>public</code> 表示公有属性或方法</li>
+<li>抽象类（Abstract Class）：抽象类是供其他类继承的基类，抽象类不允许被实例化。抽象类中的抽象方法必须在子类中被实现</li>
+<li>接口（Interfaces）：不同类之间公有的属性或方法，可以抽象成一个接口。接口可以被类实现（implements）。一个类只能继承自另一个类，但是可以实现多个接口</li>
+</ul>
+<h3 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h3><p>使用 <code>class</code> 定义类，使用 <code>constructor</code> 定义构造函数。</p>
+<p>通过 <code>new</code> 生成新实例的时候，会自动调用构造函数。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">		name:string; // 定义属性</span><br><span class="line">    constructor(name) &#123;</span><br><span class="line">        this.name = name; // 属性赋值</span><br><span class="line">    &#125;</span><br><span class="line">    sayHi() &#123;</span><br><span class="line">        return `我叫 $&#123;this.name&#125;`;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let cat = new Animal(&apos;Tom&apos;);</span><br><span class="line">console.log(cat.sayHi()); // 我叫 Tom</span><br></pre></td></tr></table></figure>
+<h3 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h3><p>使用 <code>extends</code> 关键字实现继承，子类中使用 <code>super</code> 关键字来调用父类的构造函数和方法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Cat extends Animal &#123;</span><br><span class="line">    color: string;</span><br><span class="line">    constructor(name, color) &#123;</span><br><span class="line">        super(name); // 调用父类Animal的 constructor(name)</span><br><span class="line">        this.color = color</span><br><span class="line">    &#125;</span><br><span class="line">    sayHi() &#123;</span><br><span class="line">        // 调用父类的 sayHi()；</span><br><span class="line">        return super.sayHi() + &apos;我是一只&apos;+ this.color + &apos; 色的猫，&apos;; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let c = new Cat(&apos;Tom&apos;, &apos;橘黄&apos;); // Tom</span><br><span class="line">console.log(c.sayHi()); // 我叫 Tom，我是一只橘黄色的猫；</span><br><span class="line"></span><br><span class="line">let cat2 = new Cat(&apos;Jerry&apos;);</span><br><span class="line">cat2.color = &apos;黑&apos;;</span><br><span class="line">console.log(c.sayHi()); // 我叫 Jerry，我是一只黑色的猫；</span><br></pre></td></tr></table></figure>
+<h3 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h3><p>使用 getter 和 setter 可以改变属性的赋值和读取行为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">		name:string;</span><br><span class="line">    constructor(name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    get name() &#123;</span><br><span class="line">        return &apos;Jack&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    set name(value) &#123;</span><br><span class="line">        console.log(&apos;setter: &apos; + value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let a = new Animal(&apos;Kitty&apos;); // setter: Kitty</span><br><span class="line">a.name = &apos;Tom&apos;; // setter: Tom</span><br><span class="line">console.log(a.name); // Jack</span><br></pre></td></tr></table></figure>
+<h3 id="实例属性和方法"><a href="#实例属性和方法" class="headerlink" title="实例属性和方法"></a>实例属性和方法</h3><p>js中的属性和方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// js中</span><br><span class="line">function Person(name) &#123;</span><br><span class="line">  this.name = name; // 实例属性</span><br><span class="line">  this.eat = function()&#123; console.log(&apos;eat&apos;) &#125;;  // 实例方法</span><br><span class="line">&#125;</span><br><span class="line">Person.age = 19; // 静态属性</span><br><span class="line">Person.sleep = function()&#123; console.log(&apos;sleep&apos;) &#125;; // 静态方法</span><br><span class="line"></span><br><span class="line">// 访问实例方法和属性:</span><br><span class="line">var tom = new Person(&apos;tom&apos;);</span><br><span class="line">console.log(tom.name) // tom</span><br><span class="line">tom.eat();</span><br><span class="line">tom.sleep() // error: tom.sleep is not a function</span><br><span class="line"></span><br><span class="line">// 访问静态方法和属性:</span><br><span class="line">console.log(Person.age); // 19</span><br><span class="line">Person.sleep();</span><br><span class="line">Person.eat(); // error: Person.eat is not a function</span><br></pre></td></tr></table></figure>
+<p>ES6 中实例的属性只能通过构造函数中的 <code>this.xxx</code> 来定义：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Animal &#123;</span><br><span class="line">    constructor()&#123;</span><br><span class="line">			this.name = &apos;tom&apos;;</span><br><span class="line">		&#125;</span><br><span class="line">    eat() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let a = new Animal();</span><br><span class="line">console.log(a.name); // tom</span><br></pre></td></tr></table></figure>
+<p>ES7 提案中可以直接在类里面定义：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// ts</span><br><span class="line">class Animal &#123;</span><br><span class="line">    name = &apos;tom&apos;;</span><br><span class="line">    eat() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let a = new Animal();</span><br><span class="line">console.log(a.name); // Jack</span><br></pre></td></tr></table></figure>
+<h3 id="静态属性和方法"><a href="#静态属性和方法" class="headerlink" title="静态属性和方法"></a>静态属性和方法</h3><p>ES7 提案中，可以使用 <code>static</code> 定义一个静态属性或方法。静态方法不需要实例化，而是直接通过类来调用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// ts</span><br><span class="line">class Animal &#123;</span><br><span class="line">    static num = 42;</span><br><span class="line">    static isAnimal(a) &#123;</span><br><span class="line">        return a instanceof Animal;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(Animal.num); // 42</span><br><span class="line">let a = new Animal(&apos;Jack&apos;);</span><br><span class="line">Animal.isAnimal(a); // true</span><br><span class="line">a.isAnimal(a); // TypeError: a.isAnimal is not a function</span><br></pre></td></tr></table></figure>
+<h3 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h3><h4 id="public"><a href="#public" class="headerlink" title="public"></a>public</h4><p>公有属性或方法，可以在任何地方被访问到，默认所有的属性和方法都是 <code>public</code>的</p>
+<h4 id="private"><a href="#private" class="headerlink" title="private"></a>private</h4><p>私有属性或方法，不能在声明它的类的外部访问，也不可以在子类中访问</p>
+<h4 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h4><p>受保护的属性或方法，它和 <code>private</code> 类似，区别是它可以在子类中访问</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">    public name:string;</span><br><span class="line">    protected phone:number;</span><br><span class="line">    private idCard:number;</span><br><span class="line">    constructor(name,idCard,phone) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.idCard = idCard;</span><br><span class="line">        this.phone = phone;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let tom = new Person(&apos;tom&apos;,420000,13811110000);</span><br><span class="line">console.log(tom.name) // tom</span><br><span class="line"></span><br><span class="line">console.log(tom.phone)</span><br><span class="line">// error:Property &apos;phone&apos; is protected and only accessible within class &apos;Person&apos; and its subclasses</span><br><span class="line"></span><br><span class="line">console.log(tom.idCard) </span><br><span class="line">// error:Property &apos;idCard&apos; is private and only accessible within class &apos;Person&apos;.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Teacher extends Person &#123;</span><br><span class="line">    constructor(name,idCard,phone) &#123;</span><br><span class="line">        super(name,idCard,phone);</span><br><span class="line">        console.log(this.name)</span><br><span class="line">        console.log(this.phone)</span><br><span class="line">				console.log(this.idCard)</span><br><span class="line">				// error:Property &apos;idCard&apos; is private and only accessible within class &apos;Person&apos;.</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>同一个父类的多个子类，可以有不同结果的同名方法：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> Person &#123;</span><br><span class="line">  eat()&#123; <span class="built_in">console</span>.log(<span class="string">'eat'</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> A <span class="keyword">extends</span> Person &#123;</span><br><span class="line">  eat()&#123; <span class="built_in">console</span>.log(<span class="string">'A eat'</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> B <span class="keyword">extends</span> Person &#123;</span><br><span class="line">  eat()&#123; <span class="built_in">console</span>.log(<span class="string">'B eat'</span>) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="抽象类-抽象方法-abstract"><a href="#抽象类-抽象方法-abstract" class="headerlink" title="抽象类/抽象方法 abstract"></a>抽象类/抽象方法 abstract</h3><p><code>abstract</code> 用于定义抽象类和其中的抽象方法。</p>
+<ol>
+<li>抽象类是提供给其他类继承的基类（父类），是不允许被实例化</li>
+<li>抽象方法只能包含在抽象类中</li>
+<li>子类继承抽象类，必须实现抽象类中的抽象方法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">abstract class Animal &#123;</span><br><span class="line">    abstract eat(); // 抽象方法</span><br><span class="line">    // 普通方法</span><br><span class="line">    sleep()&#123;</span><br><span class="line">      console.log(&apos;sleep&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let a = new Animal(); // 报错，抽象类不能被实例化</span><br><span class="line"></span><br><span class="line">class Cat extends Animal &#123;</span><br><span class="line">    eat()&#123; </span><br><span class="line">    	// 父类的eat方法必须被实现</span><br><span class="line">      console.log(&apos;eat&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类与接口"><a href="#类与接口" class="headerlink" title="类与接口"></a>类与接口</h2><p>前面介绍了 <strong>接口</strong> 可以用来描述 <strong>对象(object)的形状</strong>，这一章主要介绍 <strong>接口</strong> 对 <strong>类(class)的行为</strong> 进行抽象。</p>
+<h3 id="类实现接口-implements"><a href="#类实现接口-implements" class="headerlink" title="类实现接口 implements"></a>类实现接口 implements</h3><p>实现（implements）是面向对象中的一个重要概念。一个类只能继承自另一个类，不同类之间可能会有一些共有特性，提取多个类的共有特性，作为一个接口，再用 <code>implements</code> 关键字来实现就可以大大提高面向对象的灵活性。</p>
+<p>举例： 人是一个类，人需要吃东西。动物是一个类，动物也需要吃东西。这种情况就可以把 吃东西 提取出来作为一个接口：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface Ieat &#123;</span><br><span class="line">   eat();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Person implements Ieat&#123;</span><br><span class="line">  eat()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Animal implements Ieat &#123;</span><br><span class="line">  eat()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个类也可以实现多个接口：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface Ieat &#123;</span><br><span class="line">   eat();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Isleep &#123;</span><br><span class="line">    sleep();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Person implements Ieat, Isleep&#123;</span><br><span class="line">  eat()&#123;&#125;</span><br><span class="line">  sleep() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="接口继承接口"><a href="#接口继承接口" class="headerlink" title="接口继承接口"></a>接口继承接口</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface Alarm &#123;</span><br><span class="line">    alert();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface LightableAlarm extends Alarm &#123;</span><br><span class="line">    lightOn();</span><br><span class="line">    lightOff();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="接口继承类"><a href="#接口继承类" class="headerlink" title="接口继承类"></a>接口继承类</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Point &#123;</span><br><span class="line">    x: number;</span><br><span class="line">    y: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Point3d extends Point &#123;</span><br><span class="line">    z: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let point3d: Point3d = &#123;x: 1, y: 2, z: 3&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="混合类型"><a href="#混合类型" class="headerlink" title="混合类型"></a>混合类型</h3><p>前面介绍了接口可以用来定义函数的形状，有时候，一个函数还可以有自己的属性和方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface Counter &#123;</span><br><span class="line">    (start: number): string;</span><br><span class="line">    interval: number;</span><br><span class="line">    reset(): void;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getCounter(): Counter &#123;</span><br><span class="line">    let counter = &lt;Counter&gt;function (start: number) &#123; &#125;;</span><br><span class="line">    counter.interval = 123;</span><br><span class="line">    counter.reset = function () &#123; &#125;;</span><br><span class="line">    return counter;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let c = getCounter();</span><br><span class="line">c(10);</span><br><span class="line">c.reset();</span><br><span class="line">c.interval = 5.0;</span><br></pre></td></tr></table></figure>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。</p>
+<p>打印number：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printer</span>(<span class="params">arr:<span class="built_in">number</span>[]</span>):<span class="title">void</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> item of arr) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">printer([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+<p>打印字符串：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 打印字符串</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printer1</span>(<span class="params">arr:<span class="built_in">string</span>[]</span>):<span class="title">void</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> item of arr) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">printer1([<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br></pre></td></tr></table></figure>
+<p>使用 any 也可以通过编译，但是无法准确定义返回值的类型，这个时候就可以使用泛型函数</p>
+<h3 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h3><p>在函数名后加上 <code>&lt;T&gt;</code> （也可以是其他别的字母），其中 <code>T</code> 用来指代输入的类型，在函数内部就可以使用这个 <code>T</code> 类型。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function printer&lt;T&gt;(arr:T[]):void &#123;</span><br><span class="line">  for(var item of arr) &#123;</span><br><span class="line">    console.log(item)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 指定具体类型调用</span><br><span class="line">printer&lt;string&gt;([&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;]);</span><br><span class="line">// 调用时也可以直接让ts自己做类型推论</span><br><span class="line">printer([1,2,3,4]);</span><br></pre></td></tr></table></figure>
+<p>也可以同时使用多个类型参数</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>&lt;<span class="title">S</span>,<span class="title">P</span>&gt;(<span class="params">tuple:[S,P]</span>):[<span class="title">P</span>,<span class="title">S</span>] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [tuple[<span class="number">1</span>], tuple[<span class="number">0</span>]]</span><br><span class="line">&#125;</span><br><span class="line">swap&lt;<span class="built_in">string</span>, <span class="built_in">number</span>&gt;([<span class="string">'a'</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> arrayList&lt;T&gt; &#123;</span><br><span class="line">  name: T;</span><br><span class="line">  list: T[] = [];</span><br><span class="line">  add(val:T):<span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.list.push(val)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> arrayList&lt;<span class="built_in">number</span>&gt;();</span><br><span class="line">arr.add(<span class="number">1</span>)</span><br><span class="line">arr.add(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(arr.list)</span><br></pre></td></tr></table></figure>
+<h3 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface Iadd&lt;T&gt; &#123;</span><br><span class="line">  (x:T,y:T):T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var add:Tadd&lt;number&gt; = function(x:number,y:number):number &#123;</span><br><span class="line">  return x + y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h3><p>在函数内部使用泛型变量的时候，由于事先不知道它是哪种类型，所以不能随意的操作它的属性或方法</p>
+<p>获取一个参数的长度：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getLength&lt;T&gt;(arg:T):T &#123;</span><br><span class="line">	console.log(arg.length) // error: Property &apos;length&apos; does not exist on type &apos;T&apos;</span><br><span class="line">  return arg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上例中，泛型 <code>T</code> 不一定包含属性 <code>length</code>，所以编译的时候报错了，这时候就可以使用泛型约束，使用 <code>extends</code> 约束泛型 <code>&lt;T&gt;</code> 必须符合 <code>Ilength</code> 的形状，也就是必须包含 <code>length</code> 属性：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface Ilength &#123;</span><br><span class="line">  length: number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getLength&lt;T extends Ilength&gt;(arg:T):T &#123;</span><br><span class="line">	console.log(arg.length)</span><br><span class="line">  return arg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getLength(&apos;abcd&apos;) // 4</span><br><span class="line"></span><br><span class="line">getLength(7) // error: Argument of type &apos;7&apos; is not assignable to parameter of type &apos;Ilength&apos;.</span><br></pre></td></tr></table></figure>
+<p>多个参数间也可以互相约束：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function copyFields&lt;T extends U, U&gt;(target: T, source: U): T &#123;</span><br><span class="line">    for (let id in source) &#123;</span><br><span class="line">        target[id] = (&lt;T&gt;source)[id];</span><br><span class="line">    &#125;</span><br><span class="line">    return target;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let x = &#123; a: 1, b: 2, c: 3, d: 4 &#125;;</span><br><span class="line">copyFields(x, &#123; b: 10, d: 20 &#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="声明文件-declare"><a href="#声明文件-declare" class="headerlink" title="声明文件 declare"></a>声明文件 declare</h2><p>当使用第三方库时，我们需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。</p>
+<h3 id="声明语句"><a href="#声明语句" class="headerlink" title="声明语句"></a>声明语句</h3><p>假如我们使用第三方库 jQuery，来获取一个元素</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&apos;#foo&apos;);</span><br><span class="line">jQuery(&apos;#foo&apos;);</span><br></pre></td></tr></table></figure>
+<p>但是在 ts 中，编译器并不知道 <code>$</code> 或 <code>jQuery</code> 是什么东西：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jQuery(&apos;#foo&apos;);</span><br><span class="line">// ERROR: Cannot find name &apos;jQuery&apos;.</span><br></pre></td></tr></table></figure>
+<p>这时，我们需要使用 <code>declare var</code> 来定义它的类型，<code>declare var</code>  并没有真的定义一个变量，只是定义了全局变量 <code>jQuery</code> 的类型，仅仅会用于编译时的检查，在编译结果中会被删除。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">declare var jQuery: (selector: string) =&gt; any;</span><br><span class="line">jQuery(&apos;#foo&apos;);</span><br></pre></td></tr></table></figure>
+<h3 id="声明文件"><a href="#声明文件" class="headerlink" title="声明文件"></a>声明文件</h3><p>通常我们会把声明语句放到一个单独的文件（<code>xxx.d.ts</code>）中，这就是声明文件，声明文件必需以 <code>.d.ts</code> 为后缀。</p>
+<p>一般来说，ts 会解析项目中所有的 <code>*.ts</code> 文件，当然也包含以 <code>.d.ts</code> 结尾的文件。所以当我们将 <code>jQuery.d.ts</code> 放到项目中时，其他所有 <code>*.ts</code> 文件就都可以获得 <code>jQuery</code> 的类型定义了。</p>
+<p>这是使用全局变量模式的声明文件，还有其他模式如 模块导入 等会在后面介绍。</p>
+<h3 id="第三方声明文件"><a href="#第三方声明文件" class="headerlink" title="第三方声明文件"></a>第三方声明文件</h3><p>社区已经帮我们定义好了很多第三方库的声明文件，可以直接下载下来使用，更推荐使用 <code>@types</code> 统一管理第三方库的声明文件。<code>@types</code> 的使用方式很简单，直接用 npm 安装对应的声明模块即可，以 jQuery 举例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install @types/jquery --save-dev</span><br></pre></td></tr></table></figure>
+<p>可以在<a href="http://microsoft.github.io/TypeSearch/" target="_blank" rel="noopener">这个页面</a>搜索你需要的声明文件。</p>
+<h3 id="书写声明文件"><a href="#书写声明文件" class="headerlink" title="书写声明文件"></a>书写声明文件</h3><p>当一个第三方库没有提供声明文件时，我们就需要自己书写声明文件了。</p>
+<p>在不同的场景下，声明文件的内容和使用方式会有所区别：</p>
+<ul>
+<li>全局变量：通过 <code>&lt;script&gt;</code> 标签引入第三方库，注入全局变量</li>
+<li>npm 包：通过 <code>import foo from &#39;foo&#39;</code> 导入，符合 ES6 模块规范</li>
+<li>UMD 库：既可以通过 <code>&lt;script&gt;</code> 标签引入，又可以通过 <code>import</code> 导入</li>
+<li>模块插件：通过 <code>import</code> 导入后，可以改变另一个模块的结构</li>
+<li>直接扩展全局变量：通过 <code>&lt;script&gt;</code> 标签引入后，改变一个全局变量的结构。比如为 <code>String.prototype</code> 新增了一个方法</li>
+<li>通过导入扩展全局变量：通过 <code>import</code> 导入后，可以改变一个全局变量的结构</li>
+</ul>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>未完待续 。。。</p>
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><ul>
+<li><a href="https://ts.xcatliu.com/" target="_blank" rel="noopener">TypeScript 入门教程</a></li>
+<li><a href="https://www.tslang.cn/docs/home.html" target="_blank" rel="noopener">TS 官方文档中文</a></li>
+<li><a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">阮一峰ECMAScript 6 入门</a></li>
+</ul>
+
+      
+
+    </div>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+      <div class="post-tags">
+        
+          <a href="/tags/typescript/" rel="tag"><i class="fa fa-tag"></i> typescript</a>
+        
+      </div>
+    
+
+    
+    
+      <div>
+        
+
+
+<div id="reward-block">
+  <button id="rewardButton" disable="enable">
+    <span>打赏</span>
+  </button>
+  <div class="reward-comment">打赏链接还是要有的，万一真的有人捐呢，感谢您的支持！</div>
+  <div id="QR" data-show="false">
+
+    
+      <div id="wechat" class="reward-box" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Mr.Welson 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" class="reward-box" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Mr.Welson 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+
+  
+    <script type="text/javascript">
+      document.getElementById("rewardButton").onclick = function() {
+        console.log(window.$)
+          var $QR = document.getElementById("QR");
+          if($QR.dataset.show === "false") {
+            $QR.dataset.show = "true";
+            $QR.style.height = "260px";
+          } else {
+            $QR.dataset.show = "false";
+            $QR.style.height = "0px";
+          }
+      }
+    </script>
+  
+</div>
+
+      </div>
+    
+
+    
+    
+
+    <footer class="post-footer">
+
+      
+      
+        
+      
+
+      
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/25/windows-command/" rel="next" title="Windows常用系统命令">
+                <i class="fa fa-chevron-left"></i> Windows常用系统命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+
+
+
+  
+  
+    <div class="comments valine-comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Mr.Welson">
+            
+              <p class="site-author-name" itemprop="name">Mr.Welson</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Mr-Welson" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.jianshu.com/users/6d851c0d63e8" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-globe"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/archives.html" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">1.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码"><span class="nav-number">1.3.</span> <span class="nav-text">编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">1.4.</span> <span class="nav-text">编译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础类型"><span class="nav-number">2.</span> <span class="nav-text">基础类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔值-boolean"><span class="nav-number">2.1.</span> <span class="nav-text">布尔值 boolean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字-number"><span class="nav-number">2.2.</span> <span class="nav-text">数字 number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串-string"><span class="nav-number">2.3.</span> <span class="nav-text">字符串 string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值-void"><span class="nav-number">2.4.</span> <span class="nav-text">空值 void</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null-和-undefined"><span class="nav-number">2.5.</span> <span class="nav-text">null 和 undefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意值-any"><span class="nav-number">2.6.</span> <span class="nav-text">任意值 any</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">2.7.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元祖-Tuple"><span class="nav-number">2.8.</span> <span class="nav-text">元祖 Tuple</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举-enum"><span class="nav-number">2.9.</span> <span class="nav-text">枚举 enum</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#枚举初始化"><span class="nav-number">2.9.1.</span> <span class="nav-text">枚举初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字枚举"><span class="nav-number">2.9.2.</span> <span class="nav-text">数字枚举</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串枚举"><span class="nav-number">2.9.3.</span> <span class="nav-text">字符串枚举</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异构枚举（Heterogeneous-enums）"><span class="nav-number">2.9.4.</span> <span class="nav-text">异构枚举（Heterogeneous enums）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常量成员和计算所得成员"><span class="nav-number">2.9.5.</span> <span class="nav-text">常量成员和计算所得成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常量枚举-const-enum"><span class="nav-number">2.9.6.</span> <span class="nav-text">常量枚举 const enum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外部枚举-declare-enum"><span class="nav-number">2.9.7.</span> <span class="nav-text">外部枚举 declare enum</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#never"><span class="nav-number">2.10.</span> <span class="nav-text">never</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#symbol"><span class="nav-number">2.11.</span> <span class="nav-text">symbol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#object"><span class="nav-number">2.12.</span> <span class="nav-text">object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置对象"><span class="nav-number">2.13.</span> <span class="nav-text">内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ECMAScript-的内置对象"><span class="nav-number">2.13.1.</span> <span class="nav-text">ECMAScript 的内置对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM-和-BOM-的内置对象"><span class="nav-number">2.13.2.</span> <span class="nav-text">DOM 和 BOM 的内置对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型推论"><span class="nav-number">3.</span> <span class="nav-text">类型推论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联合类型"><span class="nav-number">4.</span> <span class="nav-text">联合类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型断言"><span class="nav-number">5.</span> <span class="nav-text">类型断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型别名-type"><span class="nav-number">6.</span> <span class="nav-text">类型别名 type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串字面量类型"><span class="nav-number">7.</span> <span class="nav-text">字符串字面量类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口-Interfaces"><span class="nav-number">8.</span> <span class="nav-text">接口 Interfaces</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口定义"><span class="nav-number">8.1.</span> <span class="nav-text">接口定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可选属性"><span class="nav-number">8.2.</span> <span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意属性"><span class="nav-number">8.3.</span> <span class="nav-text">任意属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只读属性-readonly"><span class="nav-number">8.4.</span> <span class="nav-text">只读属性 readonly</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数类型接口"><span class="nav-number">8.5.</span> <span class="nav-text">函数类型接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">9.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数声明"><span class="nav-number">9.1.</span> <span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数（函数表达式）"><span class="nav-number">9.2.</span> <span class="nav-text">匿名函数（函数表达式）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用接口定义函数的形状"><span class="nav-number">9.3.</span> <span class="nav-text">用接口定义函数的形状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可选参数"><span class="nav-number">9.4.</span> <span class="nav-text">可选参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认参数"><span class="nav-number">9.5.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剩余参数"><span class="nav-number">9.6.</span> <span class="nav-text">剩余参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数重载"><span class="nav-number">9.7.</span> <span class="nav-text">函数重载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类-class"><span class="nav-number">10.</span> <span class="nav-text">类 class</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关概念"><span class="nav-number">10.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的定义"><span class="nav-number">10.2.</span> <span class="nav-text">类的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的继承"><span class="nav-number">10.3.</span> <span class="nav-text">类的继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存取器"><span class="nav-number">10.4.</span> <span class="nav-text">存取器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例属性和方法"><span class="nav-number">10.5.</span> <span class="nav-text">实例属性和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态属性和方法"><span class="nav-number">10.6.</span> <span class="nav-text">静态属性和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问修饰符"><span class="nav-number">10.7.</span> <span class="nav-text">访问修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#public"><span class="nav-number">10.7.1.</span> <span class="nav-text">public</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#private"><span class="nav-number">10.7.2.</span> <span class="nav-text">private</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#protected"><span class="nav-number">10.7.3.</span> <span class="nav-text">protected</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多态"><span class="nav-number">10.8.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象类-抽象方法-abstract"><span class="nav-number">10.9.</span> <span class="nav-text">抽象类/抽象方法 abstract</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类与接口"><span class="nav-number">11.</span> <span class="nav-text">类与接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类实现接口-implements"><span class="nav-number">11.1.</span> <span class="nav-text">类实现接口 implements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口继承接口"><span class="nav-number">11.2.</span> <span class="nav-text">接口继承接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口继承类"><span class="nav-number">11.3.</span> <span class="nav-text">接口继承类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合类型"><span class="nav-number">11.4.</span> <span class="nav-text">混合类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型"><span class="nav-number">12.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型函数"><span class="nav-number">12.1.</span> <span class="nav-text">泛型函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型类"><span class="nav-number">12.2.</span> <span class="nav-text">泛型类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型接口"><span class="nav-number">12.3.</span> <span class="nav-text">泛型接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型约束"><span class="nav-number">12.4.</span> <span class="nav-text">泛型约束</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明文件-declare"><span class="nav-number">13.</span> <span class="nav-text">声明文件 declare</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明语句"><span class="nav-number">13.1.</span> <span class="nav-text">声明语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#声明文件"><span class="nav-number">13.2.</span> <span class="nav-text">声明文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方声明文件"><span class="nav-number">13.3.</span> <span class="nav-text">第三方声明文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#书写声明文件"><span class="nav-number">13.4.</span> <span class="nav-text">书写声明文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局变量"><span class="nav-number">13.5.</span> <span class="nav-text">全局变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感谢"><span class="nav-number">14.</span> <span class="nav-text">感谢</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">
+  
+  &copy; 
+  
+    2017 &mdash; 
+    <span itemprop="copyrightYear">2019</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mr.Welson</span>
+
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+  
+    <span class="site-uv" id="busuanzi_container_site_uv">
+      您是本站第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访问者
+    </span>
+  
+
+  
+  
+    <span class="site-pv" id="busuanzi_container_site_pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+    <script type="text/javascript" id="jquery-script" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="fastclick-script" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="lazyload-script" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="velocity-script" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="velocity_ui-script" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="fancybox-script" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="canvas_nest-script" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      if(NexT.utils.isMobile()) {
+        $("script[id='canvas_nest-script']").remove();
+        $("canvas[id*='c_n']").remove();
+      }
+    })
+  </script>
+
+
+ 
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'dzypYtzX31XqgMPyUck0K7Ee-gzGzoHsz',
+        appKey: 'UgiUCEKcXCUCnvv5EufCQNEC',
+        placeholder: '说点什么吧...',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="//cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("dzypYtzX31XqgMPyUck0K7Ee-gzGzoHsz", "UgiUCEKcXCUCnvv5EufCQNEC");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

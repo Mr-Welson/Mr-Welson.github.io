@@ -1,0 +1,1765 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.jpg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="demo,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="js原生日历插件，功能尚未完善。。。 	目前只实现了最基础的日历数据获取">
+<meta name="keywords" content="demo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日历插件">
+<meta property="og:url" content="https://mr-welson.github.io/2017/10/30/2017-10-30-datepicker/index.html">
+<meta property="og:site_name" content="Mr.Welson">
+<meta property="og:description" content="js原生日历插件，功能尚未完善。。。 	目前只实现了最基础的日历数据获取">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-25T10:18:29.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日历插件">
+<meta name="twitter:description" content="js原生日历插件，功能尚未完善。。。 	目前只实现了最基础的日历数据获取">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mr-welson.github.io/2017/10/30/2017-10-30-datepicker/">
+
+
+
+
+
+  <title>日历插件 | Mr.Welson</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr.Welson</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">never stop learning</h1>
+      
+  </div>
+
+  
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mr-welson.github.io/2017/10/30/2017-10-30-datepicker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Welson">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.Welson">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">日历插件</h2>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              
+              
+                <span class="post-meta-item-text">posted @ </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-30T00:00:00+08:00">
+                2017-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+          
+            <span class="post-category">
+              
+                <span class="post-meta-divider"> </span>
+              
+            
+              
+                <span class="post-meta-item-text">分类： </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+            <span class="post-wordcount">
+              
+              
+                
+                  <span class="post-meta-divider"> </span>
+                
+                
+                <span title="字数">
+                 字数(913)
+                </span>
+              
+
+              
+
+              
+              
+            </span>
+          
+
+          
+          
+            <span id="/2017/10/30/2017-10-30-datepicker/" class="leancloud_visitors" data-flag-title="日历插件">
+              <span class="post-meta-divider"> </span>
+              
+              <span class="page-pv">
+                阅读(
+                <span class="leancloud-visitors-count"></span>
+                )
+              </span>
+              
+             </span>
+          
+
+          
+
+          
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider"> </span>
+                
+                <a href="/2017/10/30/2017-10-30-datepicker/#comments" itemprop="discussionUrl">
+                  评论(
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/10/30/2017-10-30-datepicker/" itemprop="commentCount"></span>
+                  )
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+      
+        <div>
+	<p>js原生日历插件，功能尚未完善。。。</p>
+	<p>目前只实现了最基础的日历数据获取</p>
+</div>
+<a id="more"></a>
+<div id="my-date-picker" class="my-date-picker">
+		<div class="my-date-input-wrapper">
+			<input type="text" class="my-date-input" name="my-date">
+		</div>
+		<div class="my-date-table-wrapper">
+			<div class="my-date-header">
+				<a class="my-date-select-btn my-date-select-year-pre-btn">《</a>
+				<a class="my-date-select-btn my-date-select-month-pre-btn">&lt;</a>
+				<span class="my-date-select">
+					<a class="my-date-year-select">2017年</a>
+					<a class="my-date-month-select">10月</a>
+				</span>
+				<a class="my-date-select-btn my-date-select-month-next-btn">&gt;</a>
+				<a class="my-date-select-btn my-date-select-year-next-btn">》</a>
+
+			</div>
+			<div class="my-date-body">
+				<table class="my-date-table">
+					<thead>
+						<tr>
+							<th>一</th>
+							<th>二</th>
+							<th>三</th>
+							<th>四</th>
+							<th>五</th>
+							<th>六</th>
+							<th>日</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="date-cell">29</td>
+							<td class="date-cell">30</td>
+							<td class="date-cell">1</td>
+							<td class="date-cell">2</td>
+							<td class="date-cell">3</td>
+							<td class="date-cell">4</td>
+							<td class="date-cell">5</td>
+						</tr>
+						<tr>
+							<td class="date-cell">6</td>
+							<td class="date-cell">7</td>
+							<td class="date-cell">8</td>
+							<td class="date-cell">9</td>
+							<td class="date-cell">10</td>
+							<td class="date-cell">11</td>
+							<td class="date-cell">12</td>
+						</tr>
+						<tr>
+							<td class="date-cell">13</td>
+							<td class="date-cell">14</td>
+							<td class="date-cell">15</td>
+							<td class="date-cell">16</td>
+							<td class="date-cell">17</td>
+							<td class="date-cell">18</td>
+							<td class="date-cell">19</td>
+						</tr>
+						<tr>
+							<td class="date-cell">20</td>
+							<td class="date-cell">21</td>
+							<td class="date-cell">22</td>
+							<td class="date-cell">23</td>
+							<td class="date-cell">24</td>
+							<td class="date-cell">25</td>
+							<td class="date-cell">26</td>
+						</tr>
+						<tr>
+							<td class="date-cell">27</td>
+							<td class="date-cell">28</td>
+							<td class="date-cell">29</td>
+							<td class="date-cell">30</td>
+							<td class="date-cell">1</td>
+							<td class="date-cell">2</td>
+							<td class="date-cell">3</td>
+						</tr>
+						<tr>
+							<td class="date-cell">4</td>
+							<td class="date-cell">5</td>
+							<td class="date-cell">6</td>
+							<td class="date-cell">7</td>
+							<td class="date-cell">8</td>
+							<td class="date-cell">9</td>
+							<td class="date-cell">10</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="my-date-footer">
+				<a>今天</a>
+			</div>
+		</div>
+</div>
+<script>
+	var style = document.createElement('link');
+	style.rel='stylesheet';
+	// 动态加载样式
+	if(navigator.userAgent.match(/(iPhone|iPod|Android|ios|webOS|iPad|BlackBerry|Windows Phone|Symbian)/i)){
+		style.href = '/assets/css/datepicker-mobile.css';
+	}else{
+		style.href = '/assets/css/datepicker.css';
+	}
+	document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+<script>
+	var formatSign = '-';
+	var oTable = $$('.my-date-table')[0];
+	var oInput = $$('.my-date-input')[0];
+	var oYearPre = $$('.my-date-select-year-pre-btn')[0];
+	var oYearNext = $$('.my-date-select-year-next-btn')[0];
+	var oMonthPre = $$('.my-date-select-month-pre-btn')[0];
+	var oMonthNext = $$('.my-date-select-month-next-btn')[0];
+	var oYear = $$('.my-date-year-select')[0];
+	var oMonth = $$('.my-date-month-select')[0];
+	var oTds = $$('.date-cell');
+	var currDate = {};
+
+	init();
+	/*
+		功能：
+		1. 日期格式化
+		2. 选日期
+		3. 选时间
+		4. 选范围
+		5. 是否显示footer
+	*/
+
+	// 给年份添加点击事件
+	oYear.addEventListener('click',function(){
+		console.log('selectYear')
+		// 新建一个div覆盖在原table上
+	})
+
+	// 给月份添加点击事件
+	oMonth.addEventListener('click',function(){
+		console.log('selectMonth')
+		// 新建一个div覆盖在原table上
+	})
+
+	// 点击上一年
+	oYearPre.addEventListener('click',function(){
+		var year = parseInt(oYear.innerHTML)-1;
+		var month = parseInt(oMonth.innerHTML);
+		oYear.innerHTML = year+'年';
+		//  更新日历表格数据
+		renderTable(getDateData(year,month));
+	})
+
+	// 点击下一年
+	oYearNext.addEventListener('click',function(){
+		var year = parseInt(oYear.innerHTML)+1;
+		var month = parseInt(oMonth.innerHTML);
+		oYear.innerHTML = year+'年';
+		//  更新日历表格数据
+		renderTable(getDateData(year,month));
+	})
+
+	// 点击上一月
+	oMonthPre.addEventListener('click',function(){
+		var year = parseInt(oYear.innerHTML);
+		var month = parseInt(oMonth.innerHTML);
+		// 当月份为1时，年份-1
+		if(month===1){
+			year--;
+			oYear.innerHTML = year+'年';
+			month=13
+		}
+		month--;
+		oMonth.innerHTML = month+'月';
+		// 更新日历表格数据
+		renderTable(getDateData(year,month));
+	})
+
+	// 点击下一月
+	oMonthNext.addEventListener('click',function(){
+		var month = parseInt(oMonth.innerHTML);
+		var year = parseInt(oYear.innerHTML);
+		// 当月份为12时，年份+1
+		if(month===12){
+			year++;
+			oYear.innerHTML = year+'年';
+			month=0
+		}
+		month++;
+		oMonth.innerHTML = month+'月';
+		// 更新日历表格数据
+		renderTable(getDateData(year,month));
+	})
+
+	// 给日期添加点击事件
+	oTds.map(function(v,k){
+		v.addEventListener('click',function(e){
+			var year = this.getAttribute('year')*1;
+			var month = this.getAttribute('month')*1;
+			var date = this.getAttribute('date')*1;
+			// 赋值
+			if(currDate.year===year&&currDate.month===month&&currDate.date===date){
+				return void 666
+			}		
+			oInput.value = year+formatSign+getNum(month)+formatSign+getNum(date);
+			oYear.innerHTML = year+'年';
+			oMonth.innerHTML = month+'月';
+			// 2. 不是这个月的重新渲染数据
+			var selectDate = {
+				year:year,
+				month:month,
+				date:date,
+			}
+			if(month!==currDate.month){
+				renderTable(getDateData(year,month),selectDate);
+			}else{
+				var parent = $$('.my-date-table')[0];
+				var preSelect = $$('.my-date-select',parent);
+				if(preSelect.length){
+					removeClass(preSelect[0],'my-date-select');
+				}
+				addClass(this,'my-date-select');
+			}
+			currDate = selectDate;
+		})
+	})
+	// 初始化日历组件
+	function init(config){
+		renderTable();
+		currDate = getCurrDate();
+		oInput.value = currDate.year+formatSign+getNum(currDate.month)+formatSign+getNum(currDate.date);
+	}
+	// 获取日历表格数据
+	function getDateData(year,month){
+		if(!year||!month){
+			var today = new Date();
+			year = today.getFullYear();
+			month = today.getMonth()+1;
+		}
+		// 本月第一天
+		var firstDay = new Date(year,month-1,1);
+		// 本月第一天的星期
+		var firstDateOfCurr = firstDay.getDay();
+		if(firstDateOfCurr===0){firstDateOfCurr=7}
+		// 要显示的上个月的日期的数量
+		var countOfPreMonth = firstDateOfCurr - 1;
+		// 本月最后一天
+		var lastDay = new Date(year,month,0);
+		// 本月最后一天的日期
+		var lastDateOfCurr = lastDay.getDate();
+		// 上个月最后一天
+		var lastDayOfPreMonth = new Date(year,month-1,0);
+		// 上个月最后一天的日期
+		var lastDateOfPreMonth = lastDayOfPreMonth.getDate();
+		var tableDate = [];
+
+		// 获取table的数据
+		for(var i=0;i<6*7;i++){
+			var date = i + 1 - countOfPreMonth;
+			var showDate = date;
+			var mm = month;
+			var yy = year;
+			var className = 'my-date-curr-month';
+			if(date<=0){
+				className = 'my-date-pre-month';
+				showDate = lastDateOfPreMonth + date;
+				mm--;
+				if(mm<=0){ mm=12;yy--; }
+			}else if(date>lastDateOfCurr){
+				className = 'my-date-next-month';
+				showDate = date - lastDateOfCurr;
+				mm++;
+				if(mm>=13){ mm=1;yy++; }
+			}
+			tableDate.push({
+				year:yy,
+				month:mm,
+				date:showDate,
+				className:className,
+			})
+		}
+		return tableDate;
+	}
+	// 获取当前选择的时间
+	function getCurrDate(){
+		if(!currDate.year){
+			var newDate = new Date();
+			var currYear = newDate.getFullYear();
+			var currMonth = newDate.getMonth()+1;
+			var currDay = newDate.getDate();
+			currDate = {
+				year:currYear,
+				month:currMonth,
+				date:currDay,
+			}
+		}
+		return currDate
+	}
+	// 渲染日历table
+	function renderTable(dateData,selectDate){
+		if(!dateData){
+			dateData = getDateData();
+		}
+		if(selectDate){
+			currDate = selectDate
+		}else{
+			getCurrDate();
+		}
+		oTds.map(function(v,k){
+			var dateTemp = dateData[k];
+			var year = dateTemp.year;
+			var month = dateTemp.month;
+			var date = dateTemp.date;
+			v.className = dateTemp.className;
+			v.innerHTML = dateTemp.date;
+			v.setAttribute('year',year);
+			v.setAttribute('month',month);
+			v.setAttribute('date',date);
+			if(date===currDate.date&&month===currDate.month&&year===currDate.year){
+				v.className = 'my-date-curr-month my-date-select';
+			}
+		})
+	}
+	// 格式化数字
+	function getNum(num){
+		return parseInt(num)>9?parseInt(num):('0'+parseInt(num))
+	}
+	// 是否有指定class
+	function hasClass(ele,cls){
+		var eleCls = ele.className||'';
+		var clsArr = eleCls.split(' ');
+		if(clsArr.length){
+			return clsArr.indexOf(cls) !== -1;
+		}else{
+			return false
+		}
+	}
+	// 添加指定class
+	function addClass(ele,cls){
+		if(!hasClass(ele,cls)){
+			ele.className = ele.className+" "+cls
+		}else{
+			console.log(ele+'已有类名'+cls)
+		}
+	}
+	// 移除指定class
+	function removeClass(ele,cls){
+		if(hasClass(ele,cls)){
+			var clsArr = ele.className.split(' ');
+			var index = clsArr.indexOf(cls);
+			clsArr.splice(index,1);
+			ele.className = clsArr.join(' ');
+		}else{
+			console.log(ele+'没有类名'+cls)
+		}
+	}
+	// 查找元素
+	function $$(str,parent){
+		parent = parent?parent:document
+		if(!str){
+			return void 666;
+		}
+		if(/^#/.test(str)){
+			return parent.getElementById(str.substring(1,str.length));
+		}else if(/^\./.test(str)){
+			return Array.prototype.slice.apply(parent.getElementsByClassName(str.substring(1,str.length)));
+		}else{
+			return Array.prototype.slice.apply(parent.getElementsByTagName(str));
+		}
+	}
+</script>
+      
+
+    </div>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+      <div class="post-tags">
+        
+          <a href="/tags/demo/" rel="tag"><i class="fa fa-tag"></i> demo</a>
+        
+      </div>
+    
+
+    
+    
+      <div>
+        
+
+
+<div id="reward-block">
+  <button id="rewardButton" disable="enable">
+    <span>打赏</span>
+  </button>
+  <div class="reward-comment">打赏链接还是要有的，万一真的有人捐呢，感谢您的支持！</div>
+  <div id="QR" data-show="false">
+
+    
+      <div id="wechat" class="reward-box" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Mr.Welson 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" class="reward-box" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Mr.Welson 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+
+  
+    <script type="text/javascript">
+      document.getElementById("rewardButton").onclick = function() {
+        console.log(window.$)
+          var $QR = document.getElementById("QR");
+          if($QR.dataset.show === "false") {
+            $QR.dataset.show = "true";
+            $QR.style.height = "260px";
+          } else {
+            $QR.dataset.show = "false";
+            $QR.style.height = "0px";
+          }
+      }
+    </script>
+  
+</div>
+
+      </div>
+    
+
+    
+    
+
+    <footer class="post-footer">
+
+      
+      
+        
+      
+
+      
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/23/2017-10-23-picture-wall/" rel="next" title="图片墙">
+                <i class="fa fa-chevron-left"></i> 图片墙
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/09/2018-11-09-Mock.JS/" rel="prev" title="Mock.js">
+                Mock.js <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+
+
+
+  
+  
+    <div class="comments valine-comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Mr.Welson">
+            
+              <p class="site-author-name" itemprop="name">Mr.Welson</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Mr-Welson" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.jianshu.com/users/6d851c0d63e8" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-globe"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/archives.html" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">
+  
+  &copy; 
+  
+    2017 &mdash; 
+    <span itemprop="copyrightYear">2019</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mr.Welson</span>
+
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+  
+    <span class="site-uv" id="busuanzi_container_site_uv">
+      您是本站第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访问者
+    </span>
+  
+
+  
+  
+    <span class="site-pv" id="busuanzi_container_site_pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+    <script type="text/javascript" id="jquery-script" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="fastclick-script" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="lazyload-script" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="velocity-script" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="velocity_ui-script" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="fancybox-script" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="canvas_nest-script" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      if(NexT.utils.isMobile()) {
+        $("script[id='canvas_nest-script']").remove();
+        $("canvas[id*='c_n']").remove();
+      }
+    })
+  </script>
+
+
+ 
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'dzypYtzX31XqgMPyUck0K7Ee-gzGzoHsz',
+        appKey: 'UgiUCEKcXCUCnvv5EufCQNEC',
+        placeholder: '说点什么吧...',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="//cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("dzypYtzX31XqgMPyUck0K7Ee-gzGzoHsz", "UgiUCEKcXCUCnvv5EufCQNEC");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

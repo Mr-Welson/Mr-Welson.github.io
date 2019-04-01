@@ -1,0 +1,1685 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.jpg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="React,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="react-router v4.x APIreact-router 4.x WEB 版本官网意译，如有不对的地方，欢迎指正。">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Router v4.x API">
+<meta property="og:url" content="https://mr-welson.github.io/2018/11/22/ReactRouter4/index.html">
+<meta property="og:site_name" content="Mr.Welson">
+<meta property="og:description" content="react-router v4.x APIreact-router 4.x WEB 版本官网意译，如有不对的地方，欢迎指正。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-25T10:18:29.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React-Router v4.x API">
+<meta name="twitter:description" content="react-router v4.x APIreact-router 4.x WEB 版本官网意译，如有不对的地方，欢迎指正。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mr-welson.github.io/2018/11/22/ReactRouter4/">
+
+
+
+
+
+  <title>React-Router v4.x API | Mr.Welson</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr.Welson</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">never stop learning</h1>
+      
+  </div>
+
+  
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              
+                <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mr-welson.github.io/2018/11/22/ReactRouter4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Welson">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.Welson">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">React-Router v4.x API</h2>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+              
+              
+                <span class="post-meta-item-text">posted @ </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T11:32:07+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+          
+            <span class="post-category">
+              
+                <span class="post-meta-divider"> </span>
+              
+            
+              
+                <span class="post-meta-item-text">分类： </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+            <span class="post-wordcount">
+              
+              
+                
+                  <span class="post-meta-divider"> </span>
+                
+                
+                <span title="字数">
+                 字数(2.6k)
+                </span>
+              
+
+              
+
+              
+              
+            </span>
+          
+
+          
+          
+            <span id="/2018/11/22/ReactRouter4/" class="leancloud_visitors" data-flag-title="React-Router v4.x API">
+              <span class="post-meta-divider"> </span>
+              
+              <span class="page-pv">
+                阅读(
+                <span class="leancloud-visitors-count"></span>
+                )
+              </span>
+              
+             </span>
+          
+
+          
+
+          
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider"> </span>
+                
+                <a href="/2018/11/22/ReactRouter4/#comments" itemprop="discussionUrl">
+                  评论(
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/22/ReactRouter4/" itemprop="commentCount"></span>
+                  )
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+      
+        <h1 id="react-router-v4-x-API"><a href="#react-router-v4-x-API" class="headerlink" title="react-router v4.x API"></a>react-router v4.x API</h1><p><a href="https://reacttraining.com/react-router/web/guides/quick-start" target="_blank" rel="noopener">react-router 4.x</a> WEB 版本官网意译，如有不对的地方，欢迎指正。</p>
+<a id="more"></a>
+<h2 id="BrowserRouter"><a href="#BrowserRouter" class="headerlink" title="BrowserRouter"></a>BrowserRouter</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; BrowserRouter &#125; from &apos;react-router-dom&apos;</span><br><span class="line"></span><br><span class="line">&lt;BrowserRouter</span><br><span class="line">  basename=&#123;optionalString&#125;</span><br><span class="line">  forceRefresh=&#123;optionalBool&#125;</span><br><span class="line">  getUserConfirmation=&#123;optionalFunc&#125;</span><br><span class="line">  keyLength=&#123;optionalNumber&#125;</span><br><span class="line">&gt;</span><br><span class="line">  &lt;App/&gt;</span><br><span class="line">&lt;/BrowserRouter&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="basename-string"><a href="#basename-string" class="headerlink" title="basename: string"></a>basename: string</h3><blockquote>
+<p>​    当前位置的基准 URL。如果你的页面部署在服务器的二级（子）目录，你需要将 <code>basename</code> 设置到此子目录。 正确的 URL 格式是前面有一个前导斜杠，但不能有尾部斜杠。</p>
+</blockquote>
+<h3 id="getUserConfirmation-fun"><a href="#getUserConfirmation-fun" class="headerlink" title="getUserConfirmation: fun"></a>getUserConfirmation: fun</h3><blockquote>
+<p>​    当导航需要确认时执行的函数</p>
+</blockquote>
+<h3 id="forceRefresh-bool"><a href="#forceRefresh-bool" class="headerlink" title="forceRefresh: bool"></a>forceRefresh: bool</h3><blockquote>
+<p>​    当设置为 true 时，在导航的过程中整个页面将会刷新。 只有当浏览器不支持 HTML5 的 history API 时，才设置为 true。</p>
+</blockquote>
+<h3 id="keyLength-number"><a href="#keyLength-number" class="headerlink" title="keyLength: number"></a>keyLength: number</h3><blockquote>
+<p>​    location.key 的长度。默认是 6</p>
+</blockquote>
+<h3 id="children-node"><a href="#children-node" class="headerlink" title="children: node"></a>children: node</h3><blockquote>
+<p>​    渲染 <strong><u>单一</u> 子组件（元素）</strong>。</p>
+</blockquote>
+<h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Link &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line">&lt;Link to=<span class="string">"/about"</span>&gt;关于&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;Link to=&#123;&#123;</span></span><br><span class="line"><span class="regexp">  pathname: '/</span>courses<span class="string">',</span></span><br><span class="line"><span class="string">  search: '</span>?sort=name<span class="string">',</span></span><br><span class="line">  hash: '#the-hash',</span><br><span class="line">  state: &#123; <span class="attr">fromDashboard</span>: <span class="literal">true</span> &#125;</span><br><span class="line">&#125;&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="to-string-object"><a href="#to-string-object" class="headerlink" title="to:  string/object"></a>to:  string/object</h3><blockquote>
+<p>​    需要跳转到的路径(pathname)或地址（location）。</p>
+</blockquote>
+<h3 id="replace-bool"><a href="#replace-bool" class="headerlink" title="replace: bool"></a>replace: bool</h3><blockquote>
+<p>​    当设置为 true 时，点击链接后将使用新地址替换掉访问历史记录里面的原地址。当设置为 false 时，点击链接后将在原有访问历史记录的基础上添加一个新的纪录。默认为 false。</p>
+</blockquote>
+<h2 id="NavLink"><a href="#NavLink" class="headerlink" title="NavLink"></a>NavLink</h2><blockquote>
+<p>​    一种特殊的<link>，会给当前的URL匹配到元素加上style属性</p>
+</blockquote>
+<blockquote>
+<p>​    A special version of the  <link> that will add styling attributes to the rendered element when it matches the current URL.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; NavLink &#125; from &apos;react-router-dom&apos;</span><br><span class="line"></span><br><span class="line">&lt;NavLink to=&quot;/about&quot;&gt;About&lt;/NavLink&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="activeClassName-string"><a href="#activeClassName-string" class="headerlink" title="activeClassName: string"></a>activeClassName: string</h3><blockquote>
+<p>​    激活时的类名</p>
+</blockquote>
+<blockquote>
+<p>​    The class to give the element when it is active. The default given class is active. This will be joined with the className prop.</p>
+</blockquote>
+<h3 id="activeStyle-object"><a href="#activeStyle-object" class="headerlink" title="activeStyle: object"></a>activeStyle: object</h3><blockquote>
+<p>​    激活的样式</p>
+</blockquote>
+<blockquote>
+<p>​    The styles to apply to the element when it is active.</p>
+</blockquote>
+<h3 id="exact-bool"><a href="#exact-bool" class="headerlink" title="exact: bool"></a>exact: bool</h3><blockquote>
+<p>​    严格匹配location’s pathname</p>
+</blockquote>
+<blockquote>
+<p>​    When true, the active class/style will only be applied if the location is matched exactly.</p>
+</blockquote>
+<h3 id="strict-bool"><a href="#strict-bool" class="headerlink" title="strict: bool"></a>strict: bool</h3><blockquote>
+<p>​    是否考虑 location’s pathname 末尾的斜杠</p>
+</blockquote>
+<blockquote>
+<p>​    When true, the trailing slash on a location’s pathname will be taken into consideration when determining if the location matches the current URL. See the <route strict> documentation for more information.</route></p>
+</blockquote>
+<h3 id="isActive-func"><a href="#isActive-func" class="headerlink" title="isActive: func"></a>isActive: func</h3><blockquote>
+<p>​    激活时可选的额外逻辑处理</p>
+</blockquote>
+<blockquote>
+<p>​    A function to add extra logic for determining whether the link is active. This should be used if you want to do more than verify that the link’s pathname matches the current URL’s pathname。</p>
+</blockquote>
+<h2 id="Redirect"><a href="#Redirect" class="headerlink" title="Redirect"></a>Redirect</h2><blockquote>
+<p>​    重定向</p>
+<p>​    Rendering a <code>&lt;Redirect&gt;</code> will navigate to a new location. The new location will override the current location in the history stack, like server-side redirects (HTTP 3xx) do.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; Route, Redirect &#125; from &apos;react-router&apos;</span><br><span class="line"></span><br><span class="line">&lt;Route exact path=&quot;/&quot; render=&#123;() =&gt; (</span><br><span class="line">  loggedIn ? (</span><br><span class="line">    &lt;Redirect </span><br><span class="line">      to=&#123;&#123;	</span><br><span class="line">          pathname: &apos;/login&apos;,</span><br><span class="line">          search: &apos;?utm=your+face&apos;,</span><br><span class="line">          state: &#123; referrer: currentLocation &#125;</span><br><span class="line">      &#125;&#125;</span><br><span class="line">    /&gt;</span><br><span class="line">  ) : (</span><br><span class="line">    &lt;PublicHomePage/&gt;</span><br><span class="line">  )</span><br><span class="line">)&#125;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;Redirect to=&quot;/somewhere/else&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="to-string-object-1"><a href="#to-string-object-1" class="headerlink" title="to:  string/object"></a>to:  string/object</h3><blockquote>
+<p>需要重定向的路径(pathname)或地址（location）。</p>
+</blockquote>
+<blockquote>
+<p>The URL to redirect to / A location to redirect to</p>
+</blockquote>
+<h3 id="push-bool"><a href="#push-bool" class="headerlink" title="push: bool"></a>push: bool</h3><blockquote>
+<p>​    When true, redirecting will push a new entry onto the history instead of replacing the current one.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Redirect push to=&quot;/somewhere/else&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="from-string"><a href="#from-string" class="headerlink" title="from: string"></a>from: string</h3><blockquote>
+<p>​    当使用&lt; switch &gt; 时 可以指定需要重定向的页面</p>
+<p>​    A pathname to redirect from. This can be used to match a location when rendering a <code>&lt;Redirect&gt;</code> inside of a <switch></switch></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">  &lt;Redirect from=&apos;/old-path&apos; to=&apos;/new-path&apos;/&gt;</span><br><span class="line">  &lt;Route path=&apos;/new-path&apos; component=&#123;Place&#125;/&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Route"><a href="#Route" class="headerlink" title="Route"></a>Route</h2><blockquote>
+<p>​    The Route component is perhaps the most important component in React Router to understand and learn to use well. Its most basic responsibility is to render some UI when a location matches the route’s path.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; BrowserRouter as Router, Route &#125; from &apos;react-router-dom&apos;</span><br><span class="line"></span><br><span class="line">&lt;Router&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Route exact path=&quot;/&quot; component=&#123;Home&#125;/&gt;</span><br><span class="line">    &lt;Route path=&quot;/news&quot; component=&#123;NewsFeed&#125;/&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/Router&gt;</span><br><span class="line"></span><br><span class="line">// &quot;/&quot;:</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;Home/&gt;</span><br><span class="line">  &lt;!-- react-empty: 2 --&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">// &quot;/news&quot;:</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;!-- react-empty: 1 --&gt;</span><br><span class="line">  &lt;NewsFeed/&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Route-render-methods"><a href="#Route-render-methods" class="headerlink" title="Route render methods"></a>Route render methods</h3><blockquote>
+<p>​    渲染Route组件的三种方式</p>
+<p>​    There are 3 ways to render something with a &lt; Route &gt;,  Each is useful in different circumstances. You should use only one of these props on a given &lt; Route &gt;. See their explanations below to understand why you have 3 options. Most of the time you’ll use component.</p>
+<ul>
+<li>&lt; Route component &gt;</li>
+<li>&lt; Route render &gt;</li>
+<li>&lt; Route children &gt;</li>
+</ul>
+</blockquote>
+<h4 id="component"><a href="#component" class="headerlink" title="component"></a>component</h4><blockquote>
+<pre><code>A React component to render only when the location matches. It will be rendered with route props.
+</code></pre></blockquote>
+<blockquote>
+<p>​    当你使用component方式时，Route组件将使用 React.createElement 创建一个新的组件，这意味着，如果你使用了内联函数，组件将会卸载多次，当然你并不希望这样。因此对于内联组件，使用render属性会更好。</p>
+</blockquote>
+<blockquote>
+<p>​    When you use component (instead of render, below) the router uses React.createElement to create a new React element from the given component. That means if you provide an inline function you will get a lot of undesired remounting. For inline rendering, use the render prop (below).</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Route path=&quot;/user/:username&quot; component=&#123;User&#125;/&gt;</span><br><span class="line"></span><br><span class="line">const User = (&#123; match &#125;) =&gt; &#123;</span><br><span class="line">  return &lt;h1&gt;Hello &#123;match.params.username&#125;!&lt;/h1&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="render-function"><a href="#render-function" class="headerlink" title="render: function"></a>render: function</h4><blockquote>
+<p>​    </p>
+<p>​    This allows for convenient inline rendering and wrapping without the undesired remounting explained above.Instead of having a new React element created for you using the component prop, you can pass in a function to be called when the location matches. The render prop receives all the same route props as the component render prop.</p>
+<p><strong>Warning:</strong> &lt; Route component &gt;  takes precendence over  &lt; Route render &gt;  so don’t use both in the same &lt; Route &gt; .</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// convenient inline rendering</span><br><span class="line">&lt;Route path=&quot;/home&quot; render=&#123;() =&gt; &lt;div&gt;Home&lt;/div&gt;&#125;/&gt;</span><br><span class="line"></span><br><span class="line">// wrapping/composing</span><br><span class="line">const FadingRoute = (&#123; component: Component, ...rest &#125;) =&gt; (</span><br><span class="line">  &lt;Route &#123;...rest&#125; render=&#123;props =&gt; (</span><br><span class="line">    &lt;FadeIn&gt;</span><br><span class="line">      &lt;Component &#123;...props&#125;/&gt;</span><br><span class="line">    &lt;/FadeIn&gt;</span><br><span class="line">  )&#125;/&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">&lt;FadingRoute path=&quot;/cool&quot; component=&#123;Something&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="children-function"><a href="#children-function" class="headerlink" title="children: function"></a>children: function</h4><blockquote>
+<p>​    Sometimes you need to render whether the path matches the location or not. In these cases, you can use the function children prop. It works exactly like render except that it gets called whether there is a match or not.    </p>
+<p>​    The children render prop receives all the same route props as the component and render methods, except when a route fails to match the URL, then match is null. This allows you to dynamically adjust your UI based on whether or not the route matches. Here we’re adding an active class if the route matches</p>
+<p><strong>Warning:</strong>  Both <route component> and <route render> take precendence over <route children> so don’t use more than one in the same <code>&lt;Route&gt;</code>.</route></route></route></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;ListItemLink to=&quot;/somewhere&quot;/&gt;</span><br><span class="line">  &lt;ListItemLink to=&quot;/somewhere-else&quot;/&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">const ListItemLink = (&#123; to, ...rest &#125;) =&gt; (</span><br><span class="line">  &lt;Route path=&#123;to&#125; children=&#123;(&#123; match &#125;) =&gt; (</span><br><span class="line">    &lt;li className=&#123;match ? &apos;active&apos; : &apos;&apos;&#125;&gt;</span><br><span class="line">      &lt;Link to=&#123;to&#125; &#123;...rest&#125;/&gt;</span><br><span class="line">    &lt;/li&gt;</span><br><span class="line">  )&#125;/&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">// This could also be useful for animations:</span><br><span class="line">&lt;Route children=&#123;(&#123; match, ...rest &#125;) =&gt; (</span><br><span class="line">  &#123;/* Animate will always render, so you can use lifecycles</span><br><span class="line">      to animate its child in and out */&#125;</span><br><span class="line">  &lt;Animate&gt;</span><br><span class="line">    &#123;match &amp;&amp; &lt;Something &#123;...rest&#125;/&gt;&#125;</span><br><span class="line">  &lt;/Animate&gt;</span><br><span class="line">)&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Route-props"><a href="#Route-props" class="headerlink" title="Route props"></a>Route props</h3><blockquote>
+<p>每个组件都会传递三个属性：match、location、history</p>
+</blockquote>
+<blockquote>
+<p>All three render methods will be passed the same three route props</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>match</li>
+<li>location</li>
+<li>history</li>
+</ul>
+</blockquote>
+<h3 id="path-string"><a href="#path-string" class="headerlink" title="path: string"></a>path: string</h3><blockquote>
+<p>​    Any valid URL path that path-to-regexp understands.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Route path=&quot;/users/:id&quot; component=&#123;User&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>​    Routes without a path always match.</p>
+</blockquote>
+<h3 id="exact-bool-1"><a href="#exact-bool-1" class="headerlink" title="exact: bool"></a>exact: bool</h3><blockquote>
+<p>​    When true, will only match if the path matches the location.pathname exactly.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>path</th>
+<th>location.pathname</th>
+<th>exact</th>
+<th>matches?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/one</td>
+<td><code>/one/two</code></td>
+<td>true</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>/one</code></td>
+<td><code>/one/two</code></td>
+<td><code>false</code></td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="strict-bool-1"><a href="#strict-bool-1" class="headerlink" title="strict: bool"></a>strict: bool</h3><blockquote>
+<p>​    When true, a path that has a trailing slash will only match a location.pathname with a trailing slash. This has no effect when there are additional URL segments in the location.pathname.</p>
+</blockquote>
+<blockquote>
+<p><strong>警告:</strong> strict模式可以辨别 location.pathname 末尾的 ‘/‘ ，但是为了确保精确匹配，必须同时使用strict模式和exact模式。</p>
+</blockquote>
+<blockquote>
+<p><strong>Warning:</strong> strict can be used to enforce that a location.pathname has no trailing slash, but in order to do this both strict and exact must be true.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>path</th>
+<th>location.pathname</th>
+<th>strict?</th>
+<th>matches</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/one/</td>
+<td>/one</td>
+<td>true</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>/one/</code></td>
+<td><code>/one/</code></td>
+<td>true</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>/one/</code></td>
+<td>/one/two</td>
+<td>true</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><blockquote>
+<p>​    react-router最基础的使用方式，也是所有路由器的常见的底层接口组件。一般的应用程序将使用一个高层的路由器</p>
+</blockquote>
+<blockquote>
+<p>​    The common low-level interface for all router components. Typically apps will use one of the high-level routers instead</p>
+</blockquote>
+<ul>
+<li><browserrouter></browserrouter></li>
+<li><hashrouter></hashrouter></li>
+<li><memoryrouter></memoryrouter></li>
+<li><nativerouter></nativerouter></li>
+<li><staticrouter>
+
+</staticrouter></li>
+</ul>
+<h3 id="history-object"><a href="#history-object" class="headerlink" title="history: object"></a>history: object</h3><blockquote>
+<p>​    A history object to use for navigation.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import createBrowserHistory from &apos;history/createBrowserHistory&apos;</span><br><span class="line"></span><br><span class="line">const customHistory = createBrowserHistory()</span><br><span class="line">&lt;Router history=&#123;customHistory&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="children-node-1"><a href="#children-node-1" class="headerlink" title="children: node"></a>children: node</h3><blockquote>
+<p>​    A single child element to render.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Router&gt;</span><br><span class="line">  &lt;App/&gt;</span><br><span class="line">&lt;/Router&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><blockquote>
+<p>Renders the first child <code>&lt;Route&gt;</code> or <code>&lt;Redirect&gt;</code> that matches the location</p>
+</blockquote>
+<blockquote>
+<p>​    Renders the first child <code>&lt;Route&gt;</code> or <code>&lt;Redirect&gt;</code> that matches the location.How is this different than just using a bunch of <code>&lt;Route&gt;</code>s ? <code>&lt;Switch&gt;</code>  is unique in that it renders a route exclusively. In contrast, every <code>&lt;Route&gt;</code> that matches the location renders inclusively. Consider this code:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Route path=&quot;/about&quot; component=&#123;About&#125;/&gt;</span><br><span class="line">&lt;Route path=&quot;/:user&quot; component=&#123;User&#125;/&gt;</span><br><span class="line">&lt;Route component=&#123;NoMatch&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>​    If the URL is /about, then <code>&lt;About&gt;</code>, <code>&lt;User&gt;</code>, and <code>&lt;NoMatch&gt;</code> will all render because they all match the path. This is by design, allowing us to compose <code>&lt;Route&gt;</code>s into our apps in many ways, like sidebars and breadcrumbs, bootstrap tabs, etc.Occasionally, however, we want to pick only one <code>&lt;Route&gt;</code> to render. If we’re at /about we don’t want to also match /:user (or show our “404” page). Here’s how to do it with Switch:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; Switch, Route &#125; from &apos;react-router&apos;</span><br><span class="line">&lt;Switch&gt;</span><br><span class="line">  &lt;Route exact path=&quot;/&quot; component=&#123;Home&#125;/&gt;</span><br><span class="line">  &lt;Route path=&quot;/about&quot; component=&#123;About&#125;/&gt;</span><br><span class="line">  &lt;Route path=&quot;/:user&quot; component=&#123;User&#125;/&gt;</span><br><span class="line">  &lt;Route component=&#123;NoMatch&#125;/&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>​    Now, if we’re at /about, <code>&lt;Switch&gt;</code> will start looking for a matching <code>&lt;Route&gt;</code>. <code>&lt;Route path=&quot;/about&quot;/&gt;</code> will match and <code>&lt;Switch&gt;</code> will stop looking for matches and render <code>&lt;About&gt;</code>. Similarly, if we’re at /michael then <code>&lt;User&gt;</code> will render.This is also useful for animated transitions since the matched <code>&lt;Route&gt;</code> is rendered in the same position as the previous one.</p>
+</blockquote>
+<blockquote>
+<p>​    This is also useful for animated transitions since the matched <code></code> is rendered in the same position as the previous one.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Fade&gt;</span><br><span class="line">  &lt;Switch&gt;</span><br><span class="line">    &#123;/* there will only ever be one child here */&#125;</span><br><span class="line">    &lt;Route/&gt;</span><br><span class="line">    &lt;Route/&gt;</span><br><span class="line">  &lt;/Switch&gt;</span><br><span class="line">&lt;/Fade&gt;</span><br><span class="line"></span><br><span class="line">&lt;Fade&gt;</span><br><span class="line">  &lt;Route/&gt;</span><br><span class="line">  &lt;Route/&gt;</span><br><span class="line">  &#123;/* there will always be two children here,</span><br><span class="line">      one might render null though, making transitions</span><br><span class="line">      a bit more cumbersome to work out */&#125;</span><br><span class="line">&lt;/Fade&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="children-node-2"><a href="#children-node-2" class="headerlink" title="children: node"></a>children: node</h3><blockquote>
+<p>​    All children of a <switch> should be <route> or <redirect> elements. Only the first child to match the current location will be rendered.<route> elements are matched using their path prop and <redirect> elements are matched using their from prop. A <route> with no path prop or a <redirect> with no from prop will always match the current location.</redirect></route></redirect></route></redirect></route></switch></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">  &lt;Route exact path=&quot;/&quot; component=&#123;Home&#125;/&gt;</span><br><span class="line"></span><br><span class="line">  &lt;Route path=&quot;/users&quot; component=&#123;Users&#125;/&gt;</span><br><span class="line">  &lt;Redirect from=&quot;/accounts&quot; to=&quot;/users&quot;/&gt;</span><br><span class="line"></span><br><span class="line">  &lt;Route component=&#123;NoMatch&#125;/&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="history"><a href="#history" class="headerlink" title="history"></a>history</h2><h2 id="location"><a href="#location" class="headerlink" title="location"></a>location</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// usually all you need</span><br><span class="line">&lt;Link to=&quot;/somewhere&quot;/&gt;</span><br><span class="line"></span><br><span class="line">// but you can use a location instead</span><br><span class="line">const location = &#123;</span><br><span class="line">  pathname: &apos;/somewhere&apos;,</span><br><span class="line">  search: &apos;?some=search-string&apos;,</span><br><span class="line">  state: &#123; fromDashboard: true &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;Link to=&#123;location&#125;/&gt;</span><br><span class="line">&lt;Redirect to=&#123;location&#125;/&gt;</span><br><span class="line">history.push(location)</span><br><span class="line">history.replace(location)</span><br></pre></td></tr></table></figure>
+<h2 id="match"><a href="#match" class="headerlink" title="match"></a>match</h2><h2 id="matchPath"><a href="#matchPath" class="headerlink" title="matchPath"></a>matchPath</h2><blockquote>
+<p>​    This lets you use the same matching code that <route> uses except outside of the normal render cycle, like gathering up data dependencies before rendering on the server.</route></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; matchPath &#125; from &apos;react-router&apos;</span><br><span class="line">const match = matchPath(&apos;/users/123&apos;, &#123;</span><br><span class="line">  path: &apos;/users/:id&apos;</span><br><span class="line">  exact: true,</span><br><span class="line">  strict: false</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="pathname"><a href="#pathname" class="headerlink" title="pathname"></a>pathname</h3><blockquote>
+<p>​    The first argument is the pathname you want to match. If you’re using this on the server with Node.js, it would be req.url.</p>
+</blockquote>
+<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><blockquote>
+<p>​    The second argument are the props to match against, they are identical to the matching props Route accepts:</p>
+</blockquote>
+<h2 id="withRouter"><a href="#withRouter" class="headerlink" title="withRouter"></a>withRouter</h2><blockquote>
+</blockquote>
+<blockquote>
+<p>​    You can get access to the history object’s properties and the closest <code>&lt;Route&gt;</code>‘s match via the withRouter higher-order component. withRouter will re-render its component every time the route changes with the same props as<code>&lt;Route&gt;</code> render props: { match, location, history }.</p>
+</blockquote>
+
+      
+
+    </div>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+      <div class="post-tags">
+        
+          <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+        
+      </div>
+    
+
+    
+    
+      <div>
+        
+
+
+<div id="reward-block">
+  <button id="rewardButton" disable="enable">
+    <span>打赏</span>
+  </button>
+  <div class="reward-comment">打赏链接还是要有的，万一真的有人捐呢，感谢您的支持！</div>
+  <div id="QR" data-show="false">
+
+    
+      <div id="wechat" class="reward-box" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Mr.Welson 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" class="reward-box" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="Mr.Welson 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+
+  
+    <script type="text/javascript">
+      document.getElementById("rewardButton").onclick = function() {
+        console.log(window.$)
+          var $QR = document.getElementById("QR");
+          if($QR.dataset.show === "false") {
+            $QR.dataset.show = "true";
+            $QR.style.height = "260px";
+          } else {
+            $QR.dataset.show = "false";
+            $QR.style.height = "0px";
+          }
+      }
+    </script>
+  
+</div>
+
+      </div>
+    
+
+    
+    
+
+    <footer class="post-footer">
+
+      
+      
+        
+      
+
+      
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/21/git-ssh/" rel="next" title="git-ssh设置">
+                <i class="fa fa-chevron-left"></i> git-ssh设置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/25/scrollbar/" rel="prev" title="滚动条美化">
+                滚动条美化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+
+
+
+  
+  
+    <div class="comments valine-comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Mr.Welson">
+            
+              <p class="site-author-name" itemprop="name">Mr.Welson</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Mr-Welson" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.jianshu.com/users/6d851c0d63e8" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-globe"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/archives.html" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#react-router-v4-x-API"><span class="nav-number">1.</span> <span class="nav-text">react-router v4.x API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BrowserRouter"><span class="nav-number">1.1.</span> <span class="nav-text">BrowserRouter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#basename-string"><span class="nav-number">1.1.1.</span> <span class="nav-text">basename: string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getUserConfirmation-fun"><span class="nav-number">1.1.2.</span> <span class="nav-text">getUserConfirmation: fun</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forceRefresh-bool"><span class="nav-number">1.1.3.</span> <span class="nav-text">forceRefresh: bool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keyLength-number"><span class="nav-number">1.1.4.</span> <span class="nav-text">keyLength: number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#children-node"><span class="nav-number">1.1.5.</span> <span class="nav-text">children: node</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Link"><span class="nav-number">1.2.</span> <span class="nav-text">Link</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#to-string-object"><span class="nav-number">1.2.1.</span> <span class="nav-text">to:  string/object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replace-bool"><span class="nav-number">1.2.2.</span> <span class="nav-text">replace: bool</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NavLink"><span class="nav-number">1.3.</span> <span class="nav-text">NavLink</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#activeClassName-string"><span class="nav-number">1.3.1.</span> <span class="nav-text">activeClassName: string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#activeStyle-object"><span class="nav-number">1.3.2.</span> <span class="nav-text">activeStyle: object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exact-bool"><span class="nav-number">1.3.3.</span> <span class="nav-text">exact: bool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strict-bool"><span class="nav-number">1.3.4.</span> <span class="nav-text">strict: bool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isActive-func"><span class="nav-number">1.3.5.</span> <span class="nav-text">isActive: func</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redirect"><span class="nav-number">1.4.</span> <span class="nav-text">Redirect</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#to-string-object-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">to:  string/object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push-bool"><span class="nav-number">1.4.2.</span> <span class="nav-text">push: bool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#from-string"><span class="nav-number">1.4.3.</span> <span class="nav-text">from: string</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Route"><span class="nav-number">1.5.</span> <span class="nav-text">Route</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Route-render-methods"><span class="nav-number">1.5.1.</span> <span class="nav-text">Route render methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#component"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">component</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#render-function"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">render: function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#children-function"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">children: function</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Route-props"><span class="nav-number">1.5.2.</span> <span class="nav-text">Route props</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path-string"><span class="nav-number">1.5.3.</span> <span class="nav-text">path: string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exact-bool-1"><span class="nav-number">1.5.4.</span> <span class="nav-text">exact: bool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strict-bool-1"><span class="nav-number">1.5.5.</span> <span class="nav-text">strict: bool</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Router"><span class="nav-number">1.6.</span> <span class="nav-text">Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history-object"><span class="nav-number">1.6.1.</span> <span class="nav-text">history: object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#children-node-1"><span class="nav-number">1.6.2.</span> <span class="nav-text">children: node</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch"><span class="nav-number">1.7.</span> <span class="nav-text">Switch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#children-node-2"><span class="nav-number">1.7.1.</span> <span class="nav-text">children: node</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#history"><span class="nav-number">1.8.</span> <span class="nav-text">history</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#location"><span class="nav-number">1.9.</span> <span class="nav-text">location</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#match"><span class="nav-number">1.10.</span> <span class="nav-text">match</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#matchPath"><span class="nav-number">1.11.</span> <span class="nav-text">matchPath</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pathname"><span class="nav-number">1.11.1.</span> <span class="nav-text">pathname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#props"><span class="nav-number">1.11.2.</span> <span class="nav-text">props</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#withRouter"><span class="nav-number">1.12.</span> <span class="nav-text">withRouter</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">
+  
+  &copy; 
+  
+    2017 &mdash; 
+    <span itemprop="copyrightYear">2019</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mr.Welson</span>
+
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+  
+    <span class="site-uv" id="busuanzi_container_site_uv">
+      您是本站第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访问者
+    </span>
+  
+
+  
+  
+    <span class="site-pv" id="busuanzi_container_site_pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+    <script type="text/javascript" id="jquery-script" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="fastclick-script" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="lazyload-script" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="velocity-script" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="velocity_ui-script" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="fancybox-script" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" id="canvas_nest-script" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      if(NexT.utils.isMobile()) {
+        $("script[id='canvas_nest-script']").remove();
+        $("canvas[id*='c_n']").remove();
+      }
+    })
+  </script>
+
+
+ 
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'dzypYtzX31XqgMPyUck0K7Ee-gzGzoHsz',
+        appKey: 'UgiUCEKcXCUCnvv5EufCQNEC',
+        placeholder: '说点什么吧...',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="//cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("dzypYtzX31XqgMPyUck0K7Ee-gzGzoHsz", "UgiUCEKcXCUCnvv5EufCQNEC");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
