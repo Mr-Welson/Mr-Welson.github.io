@@ -728,11 +728,10 @@
 <!-- LOCAL: You can save these files to your site and update links -->
     
         
-        
+     
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
-        <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
-
+        <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
+        <script src="https://billts.site/js/gitment.js"></script>
     
 <!-- END LOCAL -->
 
@@ -741,12 +740,10 @@
     
       <script type="text/javascript">
       function renderGitment(){
-        var gitment = new Gitmint({
+        var gitment = new Gitment({
             id: window.location.pathname, 
             owner: 'Mr-Welson',
             repo: 'Mr-Welson.github.io',
-            
-            lang: "zh-Hans,en" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
             
             oauth: {
             
