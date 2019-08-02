@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="Mr.Welson">
 <meta property="og:description" content="js原生日历插件，功能尚未完善。。。 	目前只实现了最基础的日历数据获取">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-25T10:18:29.749Z">
+<meta property="og:updated_time" content="2019-04-29T01:41:13.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="日历插件">
 <meta name="twitter:description" content="js原生日历插件，功能尚未完善。。。 	目前只实现了最基础的日历数据获取">
@@ -416,12 +416,12 @@
           
             
               <span class="post-comments-count">
-                <span class="post-meta-divider"> </span>
-                
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2017/10/30/2017-10-30-datepicker/#comments" itemprop="discussionUrl">
-                  评论(
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/10/30/2017-10-30-datepicker/" itemprop="commentCount"></span>
-                  )
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/30/2017-10-30-datepicker/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -801,7 +801,7 @@
 	}
 	// 查找元素
 	function $$(str,parent){
-		parent = parent?parent:document
+		parent = parent ? parent : document
 		if(!str){
 			return void 666;
 		}
@@ -948,8 +948,12 @@
 
   
   
-    <div class="comments valine-comments" id="comments">
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
     </div>
+
   
 
 
@@ -1289,30 +1293,45 @@
 
 
 
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'Mr-Welson',
+            repo: 'Mr-Welson.github.io',
+            
+            lang: "zh-Hans,en" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'f0e6deab91f05cdc6a41ddf3604f6de3da277e62',
+            
+                client_id: '0392cff569df5cc7ff21'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: true,
-        appId: 'dzypYtzX31XqgMPyUck0K7Ee-gzGzoHsz',
-        appKey: 'UgiUCEKcXCUCnvv5EufCQNEC',
-        placeholder: '说点什么吧...',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
+
 
 
 
