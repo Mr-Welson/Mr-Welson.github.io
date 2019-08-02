@@ -419,6 +419,16 @@
           
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider"> </span>
+                
+                <a href="/2018/11/20/hexo-note/#comments" itemprop="discussionUrl">
+                  评论(
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/20/hexo-note/" itemprop="commentCount"></span>
+                  )
+                </a>
+              </span>
+            
           
 
           
@@ -614,6 +624,16 @@
 
           
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider"> </span>
+                
+                <a href="/2018/11/09/2018-11-09-Mock.JS/#comments" itemprop="discussionUrl">
+                  评论(
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/09/2018-11-09-Mock.JS/" itemprop="commentCount"></span>
+                  )
+                </a>
+              </span>
             
           
 
@@ -817,6 +837,16 @@
           
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider"> </span>
+                
+                <a href="/2017/10/30/2017-10-30-datepicker/#comments" itemprop="discussionUrl">
+                  评论(
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/10/30/2017-10-30-datepicker/" itemprop="commentCount"></span>
+                  )
+                </a>
+              </span>
+            
           
 
           
@@ -1013,6 +1043,16 @@
 
           
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider"> </span>
+                
+                <a href="/2017/10/23/2017-10-23-picture-wall/#comments" itemprop="discussionUrl">
+                  评论(
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/10/23/2017-10-23-picture-wall/" itemprop="commentCount"></span>
+                  )
+                </a>
+              </span>
             
           
 
@@ -1440,24 +1480,30 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-     
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
-        <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
-
-    
-<!-- END LOCAL -->
-
-    
-
-    
 
 
 
-
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'dzypYtzX31XqgMPyUck0K7Ee-gzGzoHsz',
+        appKey: 'UgiUCEKcXCUCnvv5EufCQNEC',
+        placeholder: '说点什么吧...',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

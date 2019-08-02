@@ -355,12 +355,8 @@
 
   
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
+    <div class="comments valine-comments" id="comments">
     </div>
-
   
 
 
@@ -725,46 +721,30 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-     
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
-        <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
-
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitment({
-            id: window.location.pathname, 
-            owner: 'Mr-Welson',
-            repo: 'Mr-Welson.github.io',
-            
-            oauth: {
-            
-            
-                client_secret: 'f0e6deab91f05cdc6a41ddf3604f6de3da277e62',
-            
-                client_id: '0392cff569df5cc7ff21'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
 
 
 
-
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'dzypYtzX31XqgMPyUck0K7Ee-gzGzoHsz',
+        appKey: 'UgiUCEKcXCUCnvv5EufCQNEC',
+        placeholder: '说点什么吧...',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
