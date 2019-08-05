@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="Mr.Welson">
 <meta property="og:description" content="图片加载较慢，需要耐心等待。。。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-25T10:18:29.747Z">
+<meta property="og:updated_time" content="2019-08-05T08:04:46.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图片墙">
 <meta name="twitter:description" content="图片加载较慢，需要耐心等待。。。">
@@ -385,7 +385,7 @@
                 
                 
                 <span title="字数">
-                 字数(795)
+                 字数(1.1k)
                 </span>
               
 
@@ -572,20 +572,42 @@
 		return _pictureWall
 	}())
 
-	var imgUrls = [
-		'/assets/images/1.jpg',
-	  '/assets/images/2.jpg',
-	  '/assets/images/3.jpg',
-	  '/assets/images/4.jpg',
-		'/assets/images/5.jpg',
-	  '/assets/images/6.jpg',
-	  '/assets/images/7.jpg',
-	  '/assets/images/8.jpg',
-		'/assets/images/9.jpg',
-	  '/assets/images/10.jpg',
-	  '/assets/images/11.jpg',
-	  '/assets/images/12.jpg',
-	]
+
+  var imgUrls = [
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/83f3f1972ff868157f10909f87079753bf3e7712e03bcb2d4de8121c99d41b1efe98ec60c2055fa6d34735046597ae99?pictype=scale&fname=1.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/6bd54e87b5bb61114e6665221f61efc8df5a539b8db2cfeae2f559da57b3bdd52d46d8122bae98540f452fcad4e558eb?pictype=scale&fname=2.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/73dcd60cd1eaa6a692913c6ce360bcfa8adde7024a5757c9044770db21b42fb556a016028effad25f295a851288363a7?pictype=scale&fname=3.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/f46c38e09ff679030483f62f589ac97eda9fb2267255eb85ee0c930ea203cafd752a608992a4cf0b5194231d578a3977?pictype=scale&fname=4.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/69654f3b5a9dc5271ab8b8963682edd11b213f30b6a6f0de1b7798482dce24345a90573d867920cab222a98a87a2c52f?pictype=scale&fname=5.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/62cc8bf461b3b2a74d64f5287235b1e23e87e8587d84153f4f91dc003564cf6dfa646c9163d7847be247b7e1872f386a?pictype=scale&fname=6.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/ae80beec40b9e386530b084d25af264ef5be5fd9358242b279a9bc5b2620d8d9d64b7951bba138def9e23db2a8952352?pictype=scale&fname=7.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/616e6a5e0e17cd1decc4da6c47739501053350f8f69cb19be2f1177c643df50875022fe757c457626eb07e8827821002?pictype=scale&fname=8.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/2cb2a42cb1a17cf4a7be9ab335e5b3c8999950564887b80794127ab169aabc19430eb0264a804026760e1e5fc4aee7c4?pictype=scale&fname=9.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/13b6efe9890383e44bb0daaa80c623897b1967866212585315b6334d385ee87bd50465f52eb60caf9ba4f0daa8fe7028?pictype=scale&fname=10.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/bd26a5750256e73c342d275390cd937a9197c9de76919a311a9f2500c6323a529a3ca311aeeeac9b0f1da65243f534d9?pictype=scale&fname=11.jpg&size=750",
+    "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/7d4ab4fc30823602dabf8c964368575c7172fa09f5cba70de3b33a89bec6f126701c3c578e7cb59a914586bb5b43c641?pictype=scale&fname=12.jpg&size=750",
+    // "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/e5e55dcc1421c90e7f6578df8bc6b6407371545c66ab8814a68a83b0ddc90dabc6847563514b9cfbe3b3f8c5b7a04a2b?pictype=scale&fname=13.jpg&size=750",
+    // "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/ca3e0a7ebc0cdcfd489a6de02ddd7c1052625b64b613c407dc1a86a29501c028a4735ba735a48f4f36ef46b8c45c72f2?pictype=scale&fname=14.jpg&size=750",
+    // "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/c29610c29f60263277440ff1f38a433de646334094309db8a24404806010bcce77a97868a25ee63531c9a2b2f77c7cfb?pictype=scale&fname=15.jpg&size=750",
+    // "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/5a7a0f2c48a07e17faa78d2ab4a25af9052c73c2155401bc3fba89c4be52930932d8d866ee8d320b9afb3675390e25ac?pictype=scale&fname=16.jpg&size=750",
+
+    // "https://picabstract-preview-ftn.weiyun.com/ftn_pic_abs_v3/13b6efe9890383e44bb0daaa80c623897b1967866212585315b6334d385ee87bd50465f52eb60caf9ba4f0daa8fe7028?pictype=scale&fname=10.jpg&size=256"
+  ]
+
+	// var imgUrls = [
+	// 	'/assets/images/1.jpg',
+	//   '/assets/images/2.jpg',
+	//   '/assets/images/3.jpg',
+	//   '/assets/images/4.jpg',
+	// 	'/assets/images/5.jpg',
+	//   '/assets/images/6.jpg',
+	//   '/assets/images/7.jpg',
+	//   '/assets/images/8.jpg',
+	// 	'/assets/images/9.jpg',
+	//   '/assets/images/10.jpg',
+	//   '/assets/images/11.jpg',
+	//   '/assets/images/12.jpg',
+	// ]
 
 	// 将url转化为base64
 	function convertImgToBase64(url, callback){
